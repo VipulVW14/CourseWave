@@ -19,6 +19,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "next-auth": "^4.23.2",
     "yarn": "^1.22.19"
   }
 }
