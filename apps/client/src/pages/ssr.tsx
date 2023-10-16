@@ -7,23 +7,23 @@ export default function Ssr({session}) {
     return (
         <div style={{height: 60, background: "white", padding: 10}}>
 
-            {session.user && <div style={{display: "flex", justifyContent: "space-between"}}>
+            {session && <div style={{display: "flex", justifyContent: "space-between"}}>
                 <h1 style={{color: "black"}}>
                     {session.user?.email}
                 </h1>
                 
                 <div>
-                    <Button variant={"contained"} onClick={() => signOut()}>Logout</Button>
+                    <Button text="Logout" onClick={() => signOut()}/>
                 </div>
             </div>}
 
-            {!session.user && <div style={{display: "flex", justifyContent: "space-between"}}>
+            {!session && <div style={{display: "flex", justifyContent: "space-between"}}>
                 <h1 style={{color: "black"}}>
-                    Coursera
+                    CourseWave
                 </h1>
                 
                 <div>
-                    <Button type="Sign Up" onClick={() => signIn()}/> 
+                    <Button text="Signup" onClick={() => signIn()}/> 
                 </div>
             </div>}
         </div>

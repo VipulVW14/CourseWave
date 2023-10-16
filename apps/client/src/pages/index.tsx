@@ -17,7 +17,7 @@ export default function Home() {
         </h2>
 
         <div>
-          <Button type="Logout" onClick={() => signOut()}/>
+          <Button text="Logout" onClick={()=>signOut()}/>
         </div>
       </div>}
         
@@ -27,10 +27,10 @@ export default function Home() {
         </h1>
         
         <div>
-          <Button type="Sign up" onClick={() => signIn()}/>
+          <Button text="Signup" onClick={()=>signIn()}/>
         </div>
-
       </div>}
+
     </div>
   )
 }
