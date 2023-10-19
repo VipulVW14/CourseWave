@@ -1,28 +1,53 @@
 import { Button } from "ui";
-import {signIn, useSession, signOut} from "next-auth/react"
-import { Inter } from 'next/font/google'
-const inter = Inter({ subsets: ['latin'] })
-import { Router, useRouter } from 'next/router'
+import { useRouter } from "next/router";
+import { signIn, useSession, signOut } from "next-auth/react";
 
-export default function Home() {
-  const session = useSession();
-  const router = useRouter();
-  console.log(session.data);
+function Appbar({}) {
+    const router = useRouter();
+    const session = useSession();
+    console.log(session);
 
-  return (      
-      <div className="grid grid-cols-12" style={{padding: "5vw"}}>
-        <div className="col-span-12 sm:col-span-6">
-          <p className="text-5xl">CourseWave</p>
-          <p className="text-2xl mt-3">A place to learn, earn and grow</p>
-          {!session.data && <div style={{display: "flex", marginTop: 20}}>
-                <Button text="Signin" onClick={() => signIn()}/>
-            </div>
-          }
-        </div>
+    return <div style={{height: 60, background: "white", padding: 10}}>
 
-        <div className="col-span-12 sm:col-span-6"  style={{marginTop: 20}}>
-          <img src={"https://img.freepik.com/free-vector/empty-classroom-interior-with-chalkboard_1308-65378.jpg"} width={500} height={400} alt={"course-image"}/>
-        </div>
-      </div>
-  )
+        {session.data && <div className="flex justify-between">
+          <h2 style={{color: "black"}}>
+            {session.data.user?.email}
+          </h2>
+          
+                <div className="flex mr-10">
+                    <div style={{marginRight: 10}}>
+                        <Button onClick={() => { router.push("/addCourse") }} text="Add course"/>
+                    </div>
+
+                    <div style={{marginRight: 10}}>
+                        <Button onClick={() => { router.push("/courses") }} text="Courses"/>
+                    </div>
+                    
+                    <div>
+                        <Button onClick={() => signOut()} text="Logout" />
+                    </div>
+                </div>
+                
+        </div>}
+
+        {!session.data && <div className="flex justify-between p-4 z-[1]">
+                <div style={{marginLeft: 10, cursor: "pointer"}} onClick={() => { router.push("/") }}>
+                    <p className="text-2xl m-1">CourseWave</p>
+                </div>
+        
+            
+                <div className="m-2">
+                    <Button text="Signin as Instructor" onClick={() => signIn()}/>
+                </div>
+        </div>}
+
+    </div>
+                                    
+
+     
+    
+            
+
 }
+
+export default Appbar;
