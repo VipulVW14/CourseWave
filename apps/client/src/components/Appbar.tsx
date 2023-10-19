@@ -1,104 +1,53 @@
-import { Button} from "ui";
+import { Button } from "ui";
 import { useRouter } from "next/router";
-import { useSetRecoilState, useRecoilValue } from "recoil";
-import { userState, isUserLoading, userEmailState } from "store";
+import { signIn, useSession, signOut } from "next-auth/react";
 
 function Appbar({}) {
     const router = useRouter();
-    const userLoading = useRecoilValue(isUserLoading);
-    const userEmail = useRecoilValue(userEmailState);
-    const setUser = useSetRecoilState(userState);
+    const session = useSession();
+    console.log(session);
 
-    if (userLoading) {
-        return <></>
-    }
+    return <div style={{height: 60, background: "white", padding: 10}}>
 
-    if (userEmail) {
-        return <div style={{
-            display: "flex",
-            justifyContent: "space-between",
-            padding: 4,
-            zIndex: 1
-        }}>
-            <div style={{marginLeft: 10, cursor: "pointer"}} onClick={() => {
-                router.push("/")
-            }}>
-                <h1>CourseWave</h1>
-            </div>
-    
-            <div style={{display: "flex"}}>
-
-                <div style={{marginRight: 10, display: "flex"}}>
+        {session.data && <div className="flex justify-between">
+          <h2 style={{color: "black"}}>
+            {session.data.user?.email}
+          </h2>
+          
+                <div className="flex mr-10">
                     <div style={{marginRight: 10}}>
-                        <Button
-                            onClick={() => {
-                                router.push("/addcourse")
-                            }}
-                            text="Add course"
-                        />
+                        <Button onClick={() => { router.push("/addCourse") }} text="Add course"/>
                     </div>
 
                     <div style={{marginRight: 10}}>
-                        <Button
-                            onClick={() => {
-                                router.push("/courses")
-                            }}
-                            text="Courses"
-                        />
+                        <Button onClick={() => { router.push("/courses") }} text="Courses"/>
                     </div>
-
-                    <Button
-                        onClick={() => {
-                            localStorage.setItem("token", "");
-                            setUser({
-                                isLoading: false,
-                                userEmail: null
-                            })
-                        }}
-                        text="Logout"
-                    />
+                    
+                    <div>
+                        <Button onClick={() => signOut()} text="Logout" />
+                    </div>
                 </div>
                 
-            </div>
-        </div>
-    } else {
-        return <div style={{
-            display: "flex",
-            justifyContent: "space-between",
-            padding: 4,
-            zIndex: 1
-        }}>
-            <div style={{marginLeft: 10, cursor: "pointer"}} onClick={() => {
-                router.push("/")
-            }}>
-                <h1>Coursera</h1>
-            </div>
+        </div>}
+
+        {!session.data && <div className="flex justify-between p-4 z-[1]">
+                <div style={{marginLeft: 10, cursor: "pointer"}} onClick={() => { router.push("/") }}>
+                    <p className="text-2xl m-1">CourseWave</p>
+                </div>
+        
+            
+                <div className="m-2">
+                    <Button text="Signin as Instructor" onClick={() => signIn()}/>
+                </div>
+        </div>}
+
+    </div>
+                                    
+
+     
     
-            <div style={{display: "flex"}}>
+            
 
-                <div style={{marginRight: 10}}>
-                    <Button
-                        variant={"contained"}
-                        onClick={() => {
-                            router.push("/signup")
-                        }}
-                        text="Signup"
-                    />
-                </div>
-
-                <div>
-                    <Button
-                        variant={"contained"}
-                        onClick={() => {
-                            router.push("/signin")
-                        }}
-                        text="Signin"
-                    />
-                </div>
-                
-            </div>
-        </div>
-    }
 }
 
 export default Appbar;
