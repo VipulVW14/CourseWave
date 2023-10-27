@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router.js";
 import { Course } from "store";
-
+import {useSession} from "next-auth/react"
 // import { NEXT_URL } from "@/config";
+
+// const session = useSession();
+// console.log(session);
 
 function Courses() {
     const [courses, setCourses] = useState([]);
 
     const init = async () => {
-        const response = await axios.get(`/api/admin/courses/`, {
+        const response = await axios.get("http://localhost:3001/user/courses", {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -23,7 +26,6 @@ function Courses() {
     }, []);
 
     return <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}>
-    
         { courses.map( course => {
             return <Course course={course} />
           }) 

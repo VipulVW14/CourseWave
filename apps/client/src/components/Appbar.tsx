@@ -5,9 +5,10 @@ import { signIn, useSession, signOut } from "next-auth/react";
 function Appbar({}) {
     const router = useRouter();
     const session = useSession();
-    console.log(session);
 
-    return <div style={{height: 60, background: "white", padding: 10}}>
+    return <div className="h-14 flex justify-between m-4">
+                  
+        <a href='/'><img className="h-10 w-10 rounded-full" src='https://i.postimg.cc/SJ7wjZLc/Blue-White-Simple-Modern-Course-Logo-2.png'alt='Logo'/></a>        
 
         {session.data && <div className="flex justify-between">
           <h2 style={{color: "black"}}>
@@ -37,17 +38,12 @@ function Appbar({}) {
         
             
                 <div className="m-2">
-                    <Button text="Signin as Instructor" onClick={() => signIn()}/>
+                    <Button text="Signin" onClick={() => signIn()}/>
                 </div>
         </div>}
 
     </div>
-                                    
-
-     
-    
-            
-
+                    
 }
 
 export default Appbar;

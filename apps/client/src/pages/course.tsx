@@ -5,19 +5,18 @@ import axios from "axios";
 
 function Course() {
     let { courseId } = useParams();
-    const [course, setCourse] = useState(null);
-    
+    const [course, setCourse] = useState({});
+    console.log(courseId);
     useEffect(() => {
-        axios.get("http://localhost:3000/admin/course/" + courseId, {
+        axios.get("http://localhost:3001/admin/course/" + courseId, {
             method: "GET",
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("token")
-            }
         }).then(res => {
             setCourse(res.data.course);
+            console.log(course);
         });
     }, []);
 
+    console.log(course);
     if (!course) {
         return <div style={{height: "100vh", justifyContent: "center", flexDirection: "column"}}>
             Loading....

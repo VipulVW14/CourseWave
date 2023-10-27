@@ -10,7 +10,7 @@ export default function Home() {
   console.log(session.data);
 
   return (      
-      <div className="grid grid-cols-12" style={{padding: "5vw"}}>
+      <div className="grid grid-cols-12 p-5 w-100 ">
         <div className="col-span-12 sm:col-span-6">
           <p className="text-5xl">CourseWave</p>
           <p className="text-2xl mt-3">A place to learn, earn and grow</p>
