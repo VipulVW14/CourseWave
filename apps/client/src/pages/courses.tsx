@@ -14,9 +14,9 @@ function Courses() {
 
     const init = async () => {
         const response = await axios.get("http://localhost:3001/user/courses", {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
+            // headers: {
+            //     Authorization: `Bearer ${localStorage.getItem('token')}`
+            // }
         })
         setCourses(response.data.courses);
     }
@@ -47,12 +47,13 @@ export function Course({course}: {course: Course}) {
         <h1>{course.description}</h1>
 
         <img src={course.imageLink} style={{width: 300}} ></img>
+        <h2>Rs.{course.price}</h2>
 
         <div style={{display: "flex", justifyContent: "center", marginTop: 20}}>
             <Button 
                 text="Edit"
                 onClick={() => {
-                    router.push("/course/" + course._id);
+                    router.push("/courseid/" + course._id);
                 }}
             />
         </div>

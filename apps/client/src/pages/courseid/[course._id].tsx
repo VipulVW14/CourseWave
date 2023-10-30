@@ -1,13 +1,16 @@
 'use client'
-import { useEffect, useState } from "react"
 import { useParams } from "next/navigation";
 import {Button} from "ui";
 import axios from "axios";
-import dynamic from "next/dynamic";
+import { Course } from "store";
+import { use, useEffect, useState, useSyncExternalStore } from "react";
 
-function Course() {
+export default function Course(){
+    console.log("This is from courseId:");
     let params = useParams();
-    console.log(params);
+    const courseId=Object.values(params)[0];        
+    console.log(courseId);
+
     const [course, setCourse] = useState({});
     useEffect(() => {
         axios.get(`http://localhost:3001/admin/course/${courseId}`, {
@@ -38,28 +41,28 @@ function Course() {
     </div>
 }
 
-function GrayTopper({title}) {
-    return <div style={{height: 250, background: "#212121", top: 0, width: "100vw", zIndex: 0, marginBottom: -250}}>
-        <div style={{ height: 250, display: "flex", justifyContent: "center", flexDirection: "column"}}>
-            <div>
-                <h1 style={{color: "white", fontWeight: 600}}>
-                    {title}
-                </h1>
-            </div>
-        </div>
-    </div>
+
+function GrayTopper({title}){
+    return <h1>{title}</h1>
 }
 
-function UpdateCard({course, setCourse}) {
+function UpdateCard({course, setCourse}){
+    
     const [title, setTitle] = useState(course.title);
     const [description, setDescription] = useState(course.description);
     const [image, setImage] = useState(course.imageLink);
     const [price, setPrice] = useState(course.price);
 
+    console.log("Course in update card: ")
+    console.log(course);
+    console.log(course.title);
+
+
     return <div style={{display: "flex", justifyContent: "center"}}>
     <div style={{maxWidth: 600, marginTop: 200}}>
         <div style={{padding: 20}}>
             <h1 style={{marginBottom: 10}}>Update course details</h1>
+
             <input
                 value={title}
                 style={{marginBottom: 10}}
@@ -67,7 +70,7 @@ function UpdateCard({course, setCourse}) {
                     setTitle(e.target.value)
                 }}
             />
-
+            <br />
             <input
                 value={description}
                 style={{marginBottom: 10}}
@@ -75,7 +78,7 @@ function UpdateCard({course, setCourse}) {
                     setDescription(e.target.value)
                 }}
             />
-
+            <br />
             <input
                 value={image}
                 style={{marginBottom: 10}}
@@ -83,6 +86,7 @@ function UpdateCard({course, setCourse}) {
                     setImage(e.target.value)
                 }}
             />
+            <br />
             <input
                 value={price}
                 style={{marginBottom: 10}}
@@ -90,10 +94,10 @@ function UpdateCard({course, setCourse}) {
                     setPrice(e.target.value)
                 }}
             />
-
+            <br />
             <Button
                 onClick={async () => {
-                    axios.put("http://localhost:3000/admin/courses/" + course._id, {
+                    axios.put("http://localhost:3001/admin/courses/" + course._id, {
                         title: title,
                         description: description,
                         imageLink: image,
@@ -119,9 +123,9 @@ function UpdateCard({course, setCourse}) {
         </div>
     </div>
 </div>
-}
 
-function CourseCard(props) {
+}
+function CourseCard(props){
     const course = props.course;
     return <div style={{display: "flex",  marginTop: 50, justifyContent: "center", width: "100%"}}>
      <div style={{
@@ -147,4 +151,4 @@ function CourseCard(props) {
     </div>
 }
 
-export default Course;
+  
