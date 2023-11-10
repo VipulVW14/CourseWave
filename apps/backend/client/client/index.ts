@@ -20,15 +20,16 @@ getCoursesById("0ae1e008-cfa6-43f3-989d-b5b89cc87b2f");
 export async function createCourse() {
   const response = await chain('mutation')({
     insert_courses_one: [{
-      object:
-        {
+      object: {
           title: 'adfasdf',
           description: 'adfasdf',
           imageLink: 'adsfa',
           price: 123
         } 
-      }
-    ],
+    },{
+      id: true,
+      title: true
+    }],
   });
   console.log(response);  
 }

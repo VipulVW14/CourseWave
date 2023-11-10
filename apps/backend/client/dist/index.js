@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCoursesById = void 0;
+exports.createCourse = exports.getCoursesById = void 0;
 const zeus_1 = require("./zeus");
 const chain = (0, zeus_1.Chain)("http://localhost:8112/v1/graphql");
 function getCoursesById(courseId) {
@@ -30,3 +30,23 @@ function getCoursesById(courseId) {
 }
 exports.getCoursesById = getCoursesById;
 getCoursesById("0ae1e008-cfa6-43f3-989d-b5b89cc87b2f");
+function createCourse() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield chain('mutation')({
+            insert_courses_one: [{
+                    object: {
+                        title: 'adfasdf',
+                        description: 'adfasdf',
+                        imageLink: 'adsfa',
+                        price: 123
+                    }
+                }, {
+                    id: true,
+                    title: true
+                }],
+        });
+        console.log(response);
+    });
+}
+exports.createCourse = createCourse;
+createCourse();
