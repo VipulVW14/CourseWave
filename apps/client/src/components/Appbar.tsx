@@ -6,40 +6,39 @@ function Appbar({}) {
     const router = useRouter();
     const session = useSession();
 
-    return <div className="h-14 flex justify-between m-4">
-                  
-        <a href='/'><img className="h-10 w-10 rounded-full" src='https://i.postimg.cc/SJ7wjZLc/Blue-White-Simple-Modern-Course-Logo-2.png'alt='Logo'/></a>        
-
+    return <div className="h-12 ml-10 mr-10 mt-8 mb-8">
+                
         {session.data && <div className="flex justify-between">
-          <h2 style={{color: "black"}}>
-            {session.data.user?.email}
-          </h2>
-          
-                <div className="flex mr-10">
-                    <div style={{marginRight: 10}}>
-                        <Button onClick={() => { router.push("/addCourse") }} text="Add course"/>
-                    </div>
+            <div className="flex">
+                <a href='/'><img className="h-14 w-14 rounded-full" src='https://i.postimg.cc/SJ7wjZLc/Blue-White-Simple-Modern-Course-Logo-2.png'alt='Logo'/></a>        
+                <h2 className="ml-4 mt-3 text-2xl">
+                    Hi, {session.data.user?.name}
+                </h2>
+            </div>
 
-                    <div style={{marginRight: 10}}>
-                        <Button onClick={() => { router.push("/courses") }} text="Courses"/>
-                    </div>
-                    
-                    <div>
-                        <Button onClick={() => signOut()} text="Logout" />
-                    </div>
+            <div className="flex">
+                <div className="mr-2">
+                    <Button onClick={() => { router.push("/courses") }} text="Courses"/>
                 </div>
+
+                <div className="mr-8">
+                    <Button onClick={() => { router.push("/addCourse") }} text="Add Course"/>
+                </div>
+
+                <div>
+                    <Button onClick={() => signOut()} text="Logout" />
+                </div>      
+            </div>               
                 
         </div>}
 
-        {!session.data && <div className="flex justify-between p-4 z-[1]">
-                <div style={{marginLeft: 10, cursor: "pointer"}} onClick={() => { router.push("/") }}>
-                    <p className="text-2xl m-1">CourseWave</p>
-                </div>
+        {!session.data && <div className="flex justify-between">
+
+            <div className="flex cursor-pointer" onClick={() => { router.push("/") }}>
+                <a href='/'><img className="h-14 w-14 rounded-full" src='https://i.postimg.cc/SJ7wjZLc/Blue-White-Simple-Modern-Course-Logo-2.png'alt='Logo'/></a>        
+                <p className="text-4xl ml-4 mt-2">CourseWave</p>
+            </div>
         
-            
-                <div className="m-2">
-                    <Button text="Signin" onClick={() => signIn()}/>
-                </div>
         </div>}
 
     </div>

@@ -10,18 +10,19 @@ export default function Home() {
   console.log(session.data);
 
   return (      
-      <div className="grid grid-cols-12 p-5 w-100 ">
-        <div className="col-span-12 sm:col-span-6">
-          <p className="text-5xl">CourseWave</p>
-          <p className="text-2xl mt-3">A place to learn, earn and grow</p>
-          {!session.data && <div style={{display: "flex", marginTop: 20}}>
+      <div className="grid grid-cols-12 p-5 w-100 m-10 ">
+        <div className="col-span-12 ml-5 mt-8 sm:col-span-6">
+          <p className="text-6xl">CourseWave</p>
+          <p className="text-4xl mt-5">A place to learn, earn and grow</p>
+
+          {!session.data && <div className="flex mt-9">
                 <Button text="Signin" onClick={() => signIn()}/>
             </div>
           }
         </div>
 
-        <div className="col-span-12 sm:col-span-6"  style={{marginTop: 20}}>
-          <img src={"https://img.freepik.com/free-vector/empty-classroom-interior-with-chalkboard_1308-65378.jpg"} width={500} height={400} alt={"course-image"}/>
+        <div className="col-span-12 sm:col-span-12 md:col-span-6" style={{marginTop: 20}}>
+          <img src={"https://i.postimg.cc/cL005L75/sigmund-AQTA5-E6m-CNU-unsplash.jpg"} className="h-400 w-600" alt={"course-image"}/>
         </div>
       </div>
   )

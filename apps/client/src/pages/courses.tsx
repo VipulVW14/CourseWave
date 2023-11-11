@@ -37,25 +37,22 @@ function Courses() {
 export function Course({course}: {course: Course}) {
     const router = useRouter();
 
-    return <div style={{
-        margin: 10,
-        width: 300,
-        minHeight: 200,
-        padding: 20
-    }}>
-        <h1>{course.title}</h1>
-        <h1>{course.description}</h1>
+    return <div className="bg-white shadow-lg rounded-lg m-5">
+        <img src={course.imageLink} style={{width: 300}} className="rounded-t-lg"></img>
 
-        <img src={course.imageLink} style={{width: 300}} ></img>
-        <h2>Rs.{course.price}</h2>
+        <div className="m-3">
+            <h1 className="text-xl">{course.title}</h1>
+            <h1 className="text-slate-500">{course.description}</h1>
+            <h2 className="mt-1">Rs.{course.price}</h2>
 
-        <div style={{display: "flex", justifyContent: "center", marginTop: 20}}>
-            <Button 
-                text="Edit"
-                onClick={() => {
-                    router.push("/courseid/" + course._id);
-                }}
-            />
+            <div className="flex justify-center ">
+                <Button 
+                    text="Edit"
+                    onClick={() => {
+                        router.push("/courseid/" + course._id);
+                    }}
+                />
+            </div>
         </div>
     </div>
 }

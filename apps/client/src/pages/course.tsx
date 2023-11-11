@@ -9,16 +9,16 @@ function Course() {
     let params = useParams();
     console.log(params);
     const [course, setCourse] = useState({});
+  
     useEffect(() => {
         axios.get(`http://localhost:3001/admin/course/${courseId}`, {
             method: "GET",
         }).then(res => {
             setCourse(res.data.course);
-            console.log(course);
         });
     }, []);
-
     console.log(course);
+    
     if (!course) {
         return <div style={{height: "100vh", justifyContent: "center", flexDirection: "column"}}>
             Loading....
@@ -39,14 +39,8 @@ function Course() {
 }
 
 function GrayTopper({title}) {
-    return <div style={{height: 250, background: "#212121", top: 0, width: "100vw", zIndex: 0, marginBottom: -250}}>
-        <div style={{ height: 250, display: "flex", justifyContent: "center", flexDirection: "column"}}>
-            <div>
-                <h1 style={{color: "white", fontWeight: 600}}>
-                    {title}
-                </h1>
-            </div>
-        </div>
+    return <div className="w-full h-40 bg-slate-100">
+        <p className="text-center pt-12 align-text-bottom font-mono tracking-wider text-5xl">Add Course</p>
     </div>
 }
 
@@ -123,27 +117,23 @@ function UpdateCard({course, setCourse}) {
 
 function CourseCard(props) {
     const course = props.course;
-    return <div style={{display: "flex",  marginTop: 50, justifyContent: "center", width: "100%"}}>
-     <div style={{
-        margin: 10,
-        width: 350,
-        minHeight: 200,
-        borderRadius: 20,
-        marginRight: 50,
-        paddingBottom: 15,
-        zIndex: 2
-    }}>
-        <img src={course.imageLink} style={{width: 350}} ></img>
-        <div style={{marginLeft: 10}}>
-            <h1>{course.title}</h1>
-            <h1 style={{color: "gray"}}>
-                Price
-            </h1>
-            <h1>
-                <b>Rs {course.price} </b>
-            </h1>
+    return <div className="bg-white shadow-lg rounded-lg m-5">
+        <img src={course.imageLink} style={{width: 300}} className="rounded-t-lg"></img>
+
+        <div className="m-3">
+            <h1 className="text-xl">{course.title}</h1>
+            <h1 className="text-slate-500">{course.description}</h1>
+            <h2 className="mt-1">Rs.{course.price}</h2>
+
+            <div className="flex justify-center ">
+                <Button 
+                    text="Edit"
+                    onClick={() => {
+                        router.push("/courseid/" + course._id);
+                    }}
+                />
+            </div>
         </div>
-    </div>
     </div>
 }
 
