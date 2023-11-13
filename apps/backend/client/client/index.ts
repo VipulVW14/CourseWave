@@ -1,7 +1,22 @@
-import { Chain } from "./zeus";
+import { Chain, ValueTypes } from "./zeus";
 const chain = Chain("http://localhost:8112/v1/graphql");
 
-export async function getCoursesById(courseId: string) {
+export async function getAllCourses() {
+  try{
+    const response= await chain("query")({
+      courses: [
+        {},
+        {id: true,title:true, description: true, imageLink: true, price: true}
+      ]
+    });
+    return response.courses;
+  }catch(error){
+    console.log(error);
+    return [];
+  }
+}
+
+export async function getCourseById(courseId: string) {
   try {
     const response = await chain("query")({
       courses_by_pk: [
@@ -10,27 +25,48 @@ export async function getCoursesById(courseId: string) {
       ],
     });
 
-    console.log(response.courses_by_pk);
+    return response.courses_by_pk;
   } catch (error) {
     console.error(error);
   }
 }
-getCoursesById("0ae1e008-cfa6-43f3-989d-b5b89cc87b2f");
+// getCourseById("0ae1e008-cfa6-43f3-989d-b5b89cc87b2f");
 
-export async function createCourse() {
-  const response = await chain('mutation')({
-    insert_courses_one: [{
-      object: {
-          title: 'adfasdf',
-          description: 'adfasdf',
-          imageLink: 'adsfa',
-          price: 123
-        } 
-    },{
-      id: true,
-      title: true
-    }],
-  });
-  console.log(response);  
+export async function updateCourseById(courseId: string, updatedCourse: ValueTypes["courses_set_input"]) {
+  try{
+    const response= await chain("mutation")({
+      update_courses_by_pk:[
+        {
+          pk_columns: { id: courseId },
+          _set: updatedCourse,
+        },
+        {
+          id: true,
+          title: true,
+          description: true,
+          imageLink: true,
+          price: true
+        }
+      ]
+    });
+    return response.update_courses_by_pk;
+  }catch(error){
+    console.log(error);
+  }
 }
-createCourse();
+
+export async function addCourse(newCourse) {
+  try{
+    const response = await chain('mutation')({
+      insert_courses_one: [{
+        object: newCourse
+      },{
+        id: true,
+        title: true
+      }],
+    });
+    return response.insert_courses_one;
+  }catch(error){
+    console.log(error);
+  }  
+}
