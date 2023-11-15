@@ -1,24 +1,21 @@
 import { Button } from "ui";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/router.js";
 import { Course } from "store";
 import {useSession} from "next-auth/react"
+import { getAllCourses} from "../../../backend/client/client"
+
 // import { NEXT_URL } from "@/config";
 
 // const session = useSession();
 // console.log(session);
 
 function Courses() {
-    const [courses, setCourses] = useState([]);
+    const [courses, setCourses] = useState<Course[]>([]);
 
     const init = async () => {
-        const response = await axios.get("http://localhost:3001/user/courses", {
-            // headers: {
-            //     Authorization: `Bearer ${localStorage.getItem('token')}`
-            // }
-        })
-        setCourses(response.data.courses);
+        const response = await getAllCourses();
+        setCourses(response);
     }
 
     useEffect(() => {
@@ -49,7 +46,7 @@ export function Course({course}: {course: Course}) {
                 <Button 
                     text="Edit"
                     onClick={() => {
-                        router.push("/courseid/" + course._id);
+                        router.push("/courseid/" + course.id);
                     }}
                 />
             </div>

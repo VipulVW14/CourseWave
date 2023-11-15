@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addCourse = exports.updateCourseById = exports.getAllCourses = void 0;
+exports.addCourse = exports.updateCourseById = exports.getCourseById = exports.getAllCourses = void 0;
 const zeus_1 = require("./zeus");
 const chain = (0, zeus_1.Chain)("http://localhost:8112/v1/graphql");
 function getAllCourses() {
@@ -21,6 +21,7 @@ function getAllCourses() {
                     { id: true, title: true, description: true, imageLink: true, price: true }
                 ]
             });
+            console.log(response.courses);
             return response.courses;
         }
         catch (error) {
@@ -30,6 +31,25 @@ function getAllCourses() {
     });
 }
 exports.getAllCourses = getAllCourses;
+getAllCourses();
+function getCourseById(courseId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield chain("query")({
+                courses_by_pk: [
+                    { id: courseId },
+                    { id: true, title: true, description: true, imageLink: true, price: true },
+                ],
+            });
+            return response.courses_by_pk;
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+}
+exports.getCourseById = getCourseById;
+// getCourseById("0ae1e008-cfa6-43f3-989d-b5b89cc87b2f");
 function updateCourseById(courseId, updatedCourse) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -41,11 +61,14 @@ function updateCourseById(courseId, updatedCourse) {
                     },
                     {
                         id: true,
-                        title: true
+                        title: true,
+                        description: true,
+                        imageLink: true,
+                        price: true
                     }
                 ]
             });
-            console.log("Server Response:", response);
+            return response.update_courses_by_pk;
         }
         catch (error) {
             console.log(error);
@@ -53,14 +76,6 @@ function updateCourseById(courseId, updatedCourse) {
     });
 }
 exports.updateCourseById = updateCourseById;
-const updatedCourse = {
-    title: "DevOps Course",
-    description: "Advance Level",
-    imageLink: "https://i.postimg.cc/QtjphdtB/Navy-Creative-How-Artificial-Intelligence-Youtube-Thumbnail-2.png",
-    price: 123
-};
-const courseId = "8a997496-ed2a-407f-910f-eb2ac0b36fa9";
-updateCourseById(courseId, updatedCourse);
 function addCourse(newCourse) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -80,9 +95,3 @@ function addCourse(newCourse) {
     });
 }
 exports.addCourse = addCourse;
-// addCourse({
-//   title: "Course from console",
-//   description: "adsfadsf",
-//   imageLink: "adfadsf",
-//   price: 123
-// })

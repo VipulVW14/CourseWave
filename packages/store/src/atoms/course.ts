@@ -1,7 +1,7 @@
 import {atom} from "recoil";
 
 export interface Course {
-  _id: string;
+  id: string;
   title: string;
   description: string;
   imageLink: string;

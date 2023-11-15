@@ -46,7 +46,7 @@ export async function updateCourseById(courseId: string, updatedCourse: ValueTyp
           description: true,
           imageLink: true,
           price: true
-        }
+        } 
       ]
     });
     return response.update_courses_by_pk;
@@ -55,7 +55,7 @@ export async function updateCourseById(courseId: string, updatedCourse: ValueTyp
   }
 }
 
-export async function addCourse(newCourse) {
+export async function addCourse(newCourse: ValueTypes["courses_set_input"]) {
   try{
     const response = await chain('mutation')({
       insert_courses_one: [{

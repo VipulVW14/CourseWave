@@ -1,22 +1,22 @@
 'use client'
 import { useParams } from "next/navigation";
 import {Button} from "ui";
-import axios from "axios";
 import { Course } from "store";
 import { use, useEffect, useState, useSyncExternalStore } from "react";
+import { getCourseById, updateCourseById } from "../../../../backend/client/client"
 
 export default function Course(){
-    console.log("This is from courseId:");
     let params = useParams();
-    const courseId=Object.values(params)[0];        
+    const courseId=Object.values(params)[0];    
 
     const [course, setCourse] = useState();
+
+    const init= async()=>{
+        const response= await getCourseById(courseId);
+        setCourse(response);
+    }
     useEffect(() => {
-        axios.get(`http://localhost:3001/admin/course/${courseId}`, {
-            method: "GET",
-        }).then(res => {
-            setCourse(res.data.course);
-        });
+        init();
     }, []);
 
     if (!course) {
@@ -83,26 +83,14 @@ function UpdateCard({course, setCourse}){
         <div className="flex items-center justify-between">
             <button 
             onClick={async () => {
-                axios.put("http://localhost:3001/admin/courses/" + course._id, {
-                    title: title,
-                    description: description,
-                    imageLink: image,
-                    published: true,
-                    price
-                }, {
-                    headers: {
-                        "Content-type": "application/json",
-                        "Authorization": "Bearer " + localStorage.getItem("token")
-                    }
-                });
                 let updatedCourse = {
-                    _id: course._id,
                     title: title,
                     description: description,
                     imageLink: image,
                     price: price
                 };
-                setCourse(updatedCourse);
+                const response= await updateCourseById(course.id, updatedCourse);
+                setCourse(response);
             }}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
             Update Course

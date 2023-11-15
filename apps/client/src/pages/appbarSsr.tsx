@@ -3,7 +3,8 @@ import {signIn, useSession, signOut} from "next-auth/react"
 import {getServerSession} from "next-auth";
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 
-export default function Ssr({session}) {
+export default function Ssr() {
+    const session = useSession();
     return (
         <div style={{height: 60, background: "white", padding: 10}}>
 

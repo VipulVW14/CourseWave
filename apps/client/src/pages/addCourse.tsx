@@ -1,12 +1,12 @@
 import {Button} from "ui";
 import {useState} from "react";
-import axios from "axios";
+import { addCourse } from "../../../backend/client/client"
 
 function AddCourse() {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
-    const [price, setPrice] = useState(0);
+    const [title, setTitle] = useState("Title");
+    const [description, setDescription] = useState("Description");
+    const [image, setImage] = useState("https://picsum.photos/400/200");
+    const [price, setPrice] = useState<number>(0);
 
     return <div>
 
@@ -40,23 +40,20 @@ function AddCourse() {
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                     Price          
                     </label>
-                    <input onChange={(e) => { setPrice(e.target.value) }} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" placeholder="Price"/>
+                    <input onChange={(e) => { setPrice(parseInt(e.target.value)) }} className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number" placeholder="Price"/>
                 </div>
 
                 <div className="flex items-center justify-between">
                     <button 
-                    onClick={async () => {
-                        await axios.post("http://localhost:3001/user/courses", {
+                    onClick={async () => {                        
+                        const newCourse={
                             title: title,
-                                description: description,
-                                imageLink: image,
-                                published: true,
-                                price
-                        }, {
-                            headers: {
-                                "Authorization": "Bearer " + localStorage.getItem("token")
-                            }
-                        });
+                            description: description,
+                            imageLink: image,
+                            price
+                        }
+                        const response = await addCourse(newCourse);
+
                         alert("Added course!");
                     }}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
@@ -69,7 +66,7 @@ function AddCourse() {
             
             <div className="col-span-10 md:col-span-6 max-w-xs">
                 <h1 className="text-2xl mb-3 mt-4">Course Preview</h1>
-                <div className="bg-white shadow-lg rounded-lg h-64">
+                <div className="bg-white shadow-lg rounded-lg m-5">
                     <img src={image} className="w-450 rounded-t-lg" ></img>
                     <div className="m-2 ">
                         <h1 className="text-lg">{title}</h1>
