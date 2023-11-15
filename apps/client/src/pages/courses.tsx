@@ -11,7 +11,7 @@ import { getAllCourses} from "../../../backend/client/client"
 // console.log(session);
 
 function Courses() {
-    const [courses, setCourses] = useState<Course[]>([]);
+    const [courses, setCourses] = useState([]);
 
     const init = async () => {
         const response = await getAllCourses();

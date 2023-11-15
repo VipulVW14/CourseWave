@@ -8,9 +8,9 @@ export default function Ssr() {
     return (
         <div style={{height: 60, background: "white", padding: 10}}>
 
-            {session && <div style={{display: "flex", justifyContent: "space-between"}}>
+            {/* {session && <div style={{display: "flex", justifyContent: "space-between"}}>
                 <h1 style={{color: "black"}}>
-                    {session.user?.email}
+                    {session.data.user?.name}
                 </h1>
                 
                 <div>
@@ -26,26 +26,27 @@ export default function Ssr() {
                 <div>
                     <Button text="Signup" onClick={() => signIn()}/> 
                 </div>
-            </div>}
+            </div>} */}
+            
         </div>
     )
 }
 
-export async function getServerSideProps(context) {
-    const session = await getServerSession(context.req, context.res, authOptions)
+// export async function getServerSideProps(context) {
+//     const session = await getServerSession(context.req, context.res, authOptions)
 
-    if (!session) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
+//     if (!session) {
+//         return {
+//             redirect: {
+//                 destination: '/',
+//                 permanent: false,
+//             },
+//         }
+//     }
 
-    return {
-        props: {
-            session,
-        },
-    }
-}
+//     return {
+//         props: {
+//             session,
+//         },
+//     }
+// }

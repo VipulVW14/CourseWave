@@ -58,9 +58,9 @@ export const authOptions: NextAuthOptions = {
         strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60, // 30 days
     },
-    jwt: {
-        encryption: true,
-    },
+    // jwt: {
+    //     encryption: true,
+    // },
     theme: {
         colorScheme: "auto", // "auto" | "dark" | "light"
         brandColor: "", // Hex color value
