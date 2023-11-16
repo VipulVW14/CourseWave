@@ -1,12 +1,19 @@
 'use client'
 import { useParams } from "next/navigation";
-import { Button } from "ui";
+import { Button, GrayTopper } from "ui";
 import { Course } from "store";
+import { useRouter } from "next/router.js";
 import { use, useEffect, useState, useSyncExternalStore } from "react";
 import { getCourseById, updateCourseById } from "../../../../backend/client/client"
+import {signIn, useSession, signOut} from "next-auth/react"
+
 
 export default function updateCourse(){
+    const session = useSession();
+    const router = useRouter();
+
     let params = useParams();
+
     const courseId = Object.values(params)[0];    
 
     const [course, setCourse] = useState<{ title: string; description: string; imageLink: string; price: number; id: unknown } | undefined>();
@@ -15,6 +22,7 @@ export default function updateCourse(){
         const response= await getCourseById(courseId.toString());
         setCourse(response);
     }
+    
     useEffect(() => {
         init();
     }, []);
@@ -26,17 +34,17 @@ export default function updateCourse(){
     }
 
     return <div>
-        <GrayTopper title={course.title}/>
-        <div className="grid grid-cols-12 m-10 flex justify-center">
+        <GrayTopper text={course.title}/>
+        {session.data && <div className="grid grid-cols-12 m-10 flex justify-center">
             <UpdateCard course={course} setCourse={setCourse} />
             <CourseCard course={course} />
-        </div>
-    </div>
-}
+        </div>}
 
-function GrayTopper({title}:{title:string}){
-    return <div className="w-full h-40 bg-slate-100">
-        <p className="text-center pt-14 align-text-bottom font-mono tracking-wider text-5xl">{title}</p>
+        {!session.data && <div className=" mt-9">
+                <p className="text-4xl mb-3">You are logged out!</p>
+                <Button text="Signin" onClick={() => signIn()}/>
+            </div>
+        }
     </div>
 }
 
@@ -92,18 +100,19 @@ function UpdateCard({course, setCourse}: UpdateCardProps){
 
         <div className="flex items-center justify-between">
             <button 
-            onClick={async () => {
-                let updatedCourse = {
-                    title: title,
-                    description: description,
-                    imageLink: image,
-                    price: price
-                };
-                const response= await updateCourseById(course.id as string, updatedCourse);
-                setCourse(response);
-            }}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-            Update Course
+                onClick={async () => {
+                    let updatedCourse = {
+                        title: title,
+                        description: description,
+                        imageLink: image,
+                        price: price
+                    };
+                    const response= await updateCourseById(course.id as string, updatedCourse);
+                    await setCourse(response);
+                    }
+                }
+                className="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                Update Course
             </button>
         </div>
         </form>  

@@ -2,19 +2,18 @@ import { Button } from "ui";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router.js";
 import { Course } from "store";
-import {useSession} from "next-auth/react"
 import { getAllCourses} from "../../../backend/client/client"
+import {signIn, useSession, signOut} from "next-auth/react"
 
 // import { NEXT_URL } from "@/config";
 
-// const session = useSession();
-// console.log(session);
-
 function Courses() {
-    const [courses, setCourses] = useState([]);
+    const session = useSession();
+    
+    const [courses, setCourses] = useState<Course[]>([]);
 
     const init = async () => {
-        const response = await getAllCourses();
+        const response:any = await getAllCourses();
         setCourses(response);
     }
 
@@ -22,10 +21,15 @@ function Courses() {
         init();
     }, []);
 
-    return <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}>
-        { courses.map( course => {
+    return <div className="flex flex-wrap justify-center">
+        {session.data && courses.map( course => {
             return <Course course={course} />
           }) 
+        }
+        {!session.data && <div className=" mt-9">
+                <p className="text-4xl mb-3">You are logged out!</p>
+                <Button text="Signin" onClick={() => signIn()}/>
+            </div>
         }
 
     </div>
@@ -56,3 +60,4 @@ export function Course({course}: {course: Course}) {
 
 export default Courses;
 
+ 

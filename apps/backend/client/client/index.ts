@@ -24,13 +24,11 @@ export async function getCourseById(courseId: string) {
         { id: true, title: true, description: true, imageLink: true, price: true },
       ],
     });
-
     return response.courses_by_pk;
   } catch (error) {
     console.error(error);
   }
 }
-// getCourseById("0ae1e008-cfa6-43f3-989d-b5b89cc87b2f");
 
 export async function updateCourseById(courseId: string, updatedCourse: ValueTypes["courses_set_input"]) {
   try{

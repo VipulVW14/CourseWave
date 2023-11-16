@@ -1,6 +1,8 @@
 import { Button } from "ui";
 import { useRouter } from "next/router";
 import { signIn, useSession, signOut } from "next-auth/react";
+import {getServerSession} from "next-auth";
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
 
 function Appbar({}) {
     const router = useRouter();
@@ -41,8 +43,7 @@ function Appbar({}) {
         
         </div>}
 
-    </div>
-                    
+    </div>              
 }
 
 export default Appbar;
