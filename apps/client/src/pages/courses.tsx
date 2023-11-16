@@ -13,7 +13,7 @@ function Courses() {
     const [courses, setCourses] = useState<Course[]>([]);
 
     const init = async () => {
-        const response:any = await getAllCourses();
+        const response : any = await getAllCourses();
         setCourses(response);
     }
 
@@ -21,7 +21,7 @@ function Courses() {
         init();
     }, []);
 
-    return <div className="flex flex-wrap justify-center">
+    return <div className="flex flex-wrap justify-center w-full h-full bg-slate-100">
         {session.data && courses.map( course => {
             return <Course course={course} />
           }) 
@@ -38,15 +38,15 @@ function Courses() {
 export function Course({course}: {course: Course}) {
     const router = useRouter();
 
-    return <div className="bg-white shadow-lg rounded-lg m-5">
-        <img src={course.imageLink} style={{width: 300}} className="rounded-t-lg"></img>
+    return <div className="bg-white shadow-md rounded-lg mx-5 my-4">
+        <img src={course.imageLink} className="max-w-sm rounded-t-lg"></img>
 
         <div className="m-3">
             <h1 className="text-xl">{course.title}</h1>
             <h1 className="text-slate-500">{course.description}</h1>
             <h2 className="mt-1">Rs.{course.price}</h2>
 
-            <div className="flex justify-center ">
+            <div className="flex justify-center mb-4">
                 <Button 
                     text="Edit"
                     onClick={() => {

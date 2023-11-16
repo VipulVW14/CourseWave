@@ -35,16 +35,15 @@ export default function updateCourse(){
 
     return <div>
         <GrayTopper text={course.title}/>
-        {session.data && <div className="grid grid-cols-12 m-10 flex justify-center">
-            <UpdateCard course={course} setCourse={setCourse} />
+        {session.data && <div className="p-10 flex flex-wrap justify-around w-full h-screen bg-slate-100">
             <CourseCard course={course} />
+            <UpdateCard course={course} setCourse={setCourse} />
         </div>}
 
         {!session.data && <div className=" mt-9">
                 <p className="text-4xl mb-3">You are logged out!</p>
                 <Button text="Signin" onClick={() => signIn()}/>
-            </div>
-        }
+        </div>}
     </div>
 }
 
@@ -71,7 +70,7 @@ function UpdateCard({course, setCourse}: UpdateCardProps){
     const [image, setImage] = useState(course.imageLink);
     const [price, setPrice] = useState(course.price);
 
-    return <div className="w-full max-w-xs col-span-10 md:col-span-6">
+    return <div className="mt-12">
         <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -100,7 +99,7 @@ function UpdateCard({course, setCourse}: UpdateCardProps){
 
         <div className="flex items-center justify-between">
             <button 
-                onClick={async () => {
+                onClick={ async () => {
                     let updatedCourse = {
                         title: title,
                         description: description,
@@ -108,7 +107,7 @@ function UpdateCard({course, setCourse}: UpdateCardProps){
                         price: price
                     };
                     const response= await updateCourseById(course.id as string, updatedCourse);
-                    await setCourse(response);
+                    setCourse(response);
                     }
                 }
                 className="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
@@ -116,21 +115,19 @@ function UpdateCard({course, setCourse}: UpdateCardProps){
             </button>
         </div>
         </form>  
-    </div>       
+    </div>     
 }
 
 function CourseCard({course}:{course:any}){
     
-    return <div className="col-span-10 md:col-span-6 max-w-xs">
-        <h1 className="text-2xl mb-3 mt-4">Course Preview</h1>
-        <div className="bg-white shadow-lg rounded-lg h-75">
-            <img src={course.imageLink} className="w-450 rounded-t-lg" ></img>
-            <div className="m-2 ">
-                <h1 className="text-lg">{course.title}</h1>
-                <h1 style={{color: "gray"}}>
-                    {course.description}
-                </h1>
-                <b>Rs. {course.price}</b>
+    return <div className="max-w-md">
+        <h1 className="text-2xl mb-3 mt-6">Course Preview</h1>
+        <div className="bg-white shadow-xl rounded-lg m-5">
+            <img src={course.imageLink} className="rounded-t-lg" ></img>
+            <div className="m-2 ml-4 pb-2 leading-7">
+                <p className="text-lg font-bold">{course.title}</p>
+                <p className="font-light">{course.description}</p>
+                <p className="font-medium">Rs. {course.price}</p>
             </div>       
         </div>           
     </div>
