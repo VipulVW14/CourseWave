@@ -2,8 +2,8 @@ name: Deploy GraphQL Backend
 
 on: 
   push: 
-    paths: 
-      -'apps/backend/client/**'
+    # paths: 
+    #   - 'apps/backend/client/**'
     branches:
       - main
 
@@ -19,9 +19,9 @@ jobs:
       env: 
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
-            echo "$SSH_PRIVATE_KEY" > keyfile
-            chmod 400 keyfile
-            mkdir -p ~/.ssh
-            cp known_hosts ~/.ssh/known_hosts
-            ssh -t -i keyfile ubuntu@ec2-54-242-164-172.compute-1.amazonaws.com "sudo bash /home/ubuntu/
-            coursewave/apps/backend/server/deploy.sh"
+        echo "$SSH_PRIVATE_KEY" > keyfile
+        chmod 400 keyfile
+        mkdir -p ~/.ssh
+        cp known_hosts ~/.ssh/known_hosts
+        ssh -t -i keyfile ubuntu@ec2-54-242-164-172.compute-1.amazonaws.com "sudo bash /home/ubuntu/
+        coursewave/apps/backend/server/deploy.sh"
