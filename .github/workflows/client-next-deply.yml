@@ -22,7 +22,7 @@ jobs:
       run: | 
           echo "$SSH_PRIVATE_KEY" > keyfile
           chmod 400 keyfile
-          # mkdir -p ~/.ssh
-          # cp known hosts ~/.ssh/known_hosts
+          mkdir -p ~/.ssh
+          cp known hosts ~/.ssh/known_hosts
           ssh -t -i keyfile ubuntu@ec2-54-242-164-172.compute-1.amazonaws.com
           "sudo bash /home/ubuntu/coursewave/apps/client/deploy.sh"
