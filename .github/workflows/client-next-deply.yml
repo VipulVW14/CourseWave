@@ -2,9 +2,9 @@ name: Deploy Client Next
 
 on: 
   push: 
-    paths: 
-      - 'apps/client/**'
-      - 'packages/ui/**'
+    # paths: 
+    #   - 'apps/client/**'
+    #   - 'packages/ui/**'
     branches:
       - main
   

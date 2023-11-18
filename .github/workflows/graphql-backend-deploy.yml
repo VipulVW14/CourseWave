@@ -2,8 +2,8 @@ name: Deploy GraphQL Backend
 
 on: 
   push: 
-    paths: 
-      - 'apps/backend/client/**'
+    # paths: 
+    #   - 'apps/backend/client/**'
     branches:
       - main
 
