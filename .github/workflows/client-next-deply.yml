@@ -24,4 +24,4 @@ jobs:
           chmod 400 keyfile
           mkdir -p ~/.ssh
           cp known_hosts ~/.ssh/known_hosts
-          ssh -i keyfile ubuntu@ec2-54-237-208-246.compute-1.amazonaws.com "sudo bash /home/ubuntu/coursewave/apps/client/deploy.sh"
+          ssh -i keyfile ubuntu@ec2-54-237-208-246.compute-1.amazonaws.com "sudo bash /home/ubuntu/CourseWave/apps/client/deploy.sh"
