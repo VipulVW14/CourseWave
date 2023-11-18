@@ -2,8 +2,8 @@ name: Deploy GraphQL Backend
 
 on: 
   push: 
-    # paths: 
-    #   - 'apps/backend/client/**'
+    paths: 
+      - 'apps/backend/client/**'
     branches:
       - main
 
@@ -23,5 +23,5 @@ jobs:
         chmod 400 keyfile
         mkdir -p ~/.ssh
         cp known_hosts ~/.ssh/known_hosts
-        ssh -t -i keyfile ubuntu@ec2-54-242-164-172.compute-1.amazonaws.com "sudo bash /home/ubuntu/
+        ssh -t -i keyfile ubuntu@ec2-54-242-164-172.compute-1.amazonaws.com "sudo bash /
         Coursewave/apps/backend/server/deploy.sh"
