@@ -5,7 +5,8 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "start:next": "cd apps/client && npm run start"
+    "start:next": "cd apps/client && npm run start",
+    "start:graphql": "cd apps/backend/server && docker-compose up"
   },
   "devDependencies": {
     "eslint": "^8.48.0",
@@ -15,7 +16,7 @@
     "typescript": "^5.2.2"
   },
   "name": "courseWave",
-  "packageManager": "npm@9.8.1",
+  "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -23,6 +24,8 @@
   "dependencies": {
     "next-auth": "^4.23.2",
     "tsc": "^2.0.4",
-    "yarn": "^1.22.19"
+    "uuid": "^7.0.3",
+    "yarn": "^1.22.19",
+    "npm": "9.8.1"
   }
 }

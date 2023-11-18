@@ -1,28 +1,27 @@
 name: Deploy Client Next
 
-on: 
-  push: 
+on:
+  push:
     # paths: 
     #   - 'apps/client/**'
     #   - 'packages/ui/**'
     branches:
       - main
-  
-jobs: 
+
+jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    steps: 
-    - name: Checkout code
-      uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: SSH and deploy
-      env: 
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      run: | 
+      - name: SSH and deploy
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
           echo "$SSH_PRIVATE_KEY" > keyfile
           chmod 400 keyfile
           mkdir -p ~/.ssh
           cp known_hosts ~/.ssh/known_hosts
-          ssh -t -i keyfile ubuntu@ec2-54-242-164-172.compute-1.amazonaws.com
-          "sudo bash /CourseWave/apps/client/deploy.sh"
+          ssh -i keyfile ubuntu@ec2-54-237-208-246.compute-1.amazonaws.com "sudo bash /home/ubuntu/coursewave/apps/client/deploy.sh"
