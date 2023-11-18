@@ -1,10 +1,10 @@
-FROM node:14
+# FROM node:14
 
-WORKDIR /apps/client
-COPY . .
-RUN npm install
-RUN npm run build
+# WORKDIR /apps/client
+# COPY . .
+# RUN npm install
+# RUN npm run build
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
 
-EXPOSE 3000
+# EXPOSE 3000
