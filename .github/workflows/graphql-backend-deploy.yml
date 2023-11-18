@@ -24,4 +24,4 @@ jobs:
         mkdir -p ~/.ssh
         cp known_hosts ~/.ssh/known_hosts
         ssh -t -i keyfile ubuntu@ec2-54-242-164-172.compute-1.amazonaws.com "sudo bash /
-        Coursewave/apps/backend/server/deploy.sh"
+        CourseWave/apps/backend/server/deploy.sh"
