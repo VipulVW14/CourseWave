@@ -85,7 +85,7 @@ function AddCourse() {
         </div>}
 
         {!session.data && <div className="mt-12 flex flex-wrap justify-center">
-                <p className="text-4xl mb-3">You are logged out!</p>
+                <p className="text-4xl mb-3 mr-4">You are logged out!</p>
                 <Button text="Signin" onClick={() => signIn()}/>
             </div>
         }         

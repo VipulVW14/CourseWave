@@ -21,17 +21,18 @@ function Courses() {
         init();
     }, []);
 
-    return <div className="flex flex-wrap justify-center w-full h-full bg-slate-100">
-        {session.data && courses.map( course => {
-            return <Course course={course} />
-          }) 
-        }
-        {!session.data && <div className=" mt-9">
-                <p className="text-4xl mb-3">You are logged out!</p>
+    return <div>
+        <div className="flex flex-wrap justify-center w-full h-full bg-slate-100">
+            {session.data && courses.map( course => {
+                return <Course course={course} />
+            }) 
+            }
+        </div>
+        {!session.data && <div className=" mt-12 flex flex-wrap justify-center ">
+                <p className="text-4xl mb-3 mr-4">You are logged out!</p>
                 <Button text="Signin" onClick={() => signIn()}/>
             </div>
         }
-
     </div>
 }
 
