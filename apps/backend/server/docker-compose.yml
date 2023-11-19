@@ -6,7 +6,7 @@ services:
     ports:
       - 4446:5432
     volumes:
-      - data:/var/lib/postgresql/data  # Corrected path
+      - data:/var/lib/postgresql/data    
     restart: always
     environment:
       POSTGRES_DB: reef_dev
