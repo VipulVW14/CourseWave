@@ -1,45 +1,45 @@
-import { userState } from "store";
-import { useSetRecoilState } from "recoil";
-import axios from "axios";
-import { useEffect } from "react";
+// import { userState } from "store";
+// import { useSetRecoilState } from "recoil";
+// import axios from "axios";
+// import { useEffect } from "react";
 
-export function InitUser() {
-    const setUser = useSetRecoilState(userState);   
+// export function InitUser() {
+//     const setUser = useSetRecoilState(userState);   
 
-    const init = async() => {
-        try {
+//     const init = async() => {
+//         try {
 
-            const response = await axios.get(`${process.env.MONGO_URL}/admin/me`, {
-                headers: {
-                    "Authorization": "Bearer " + localStorage.getItem("token")
-                }
-            })
+//             const response = await axios.get(`${process.env.MONGO_URL}/admin/me`, {
+//                 headers: {
+//                     "Authorization": "Bearer " + localStorage.getItem("token")
+//                 }
+//             })
   
-            if (response.data.username) {
-                setUser({
-                    isLoading: false,
-                    userEmail: response.data.username
-                })
-            } else {
-                setUser({
-                    isLoading: false,
-                    userEmail: null
-                })
-            }
+//             if (response.data.username) {
+//                 setUser({
+//                     isLoading: false,
+//                     userEmail: response.data.username
+//                 })
+//             } else {
+//                 setUser({
+//                     isLoading: false,
+//                     userEmail: null
+//                 })
+//             }
 
-        } catch (e) {
+//         } catch (e) {
 
-            setUser({
-                isLoading: false,
-                userEmail: null
-            })
+//             setUser({
+//                 isLoading: false,
+//                 userEmail: null
+//             })
             
-        }
-    };
+//         }
+//     };
   
-    useEffect(() => {
-        init();
-    }, []);
+//     useEffect(() => {
+//         init();
+//     }, []);
   
-    return <></>
-  }
+//     return <></>
+//   }
