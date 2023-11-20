@@ -10,6 +10,7 @@ node -v
 cd /home/ubuntu/CourseWave/ 
 git pull origin main
 yarn install 
+cd /home/ubuntu/CourseWave/apps/client
 yarn build 
 pm2 stop next
 pm2 start npm --name "next" -- run "start:next"
