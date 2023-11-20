@@ -35,15 +35,17 @@ export default function updateCourse(){
 
     return <div>
         <GrayTopper text={course.title}/>
-        {session.data && <div className="p-10 flex flex-wrap justify-around w-full h-screen bg-slate-100">
+        {/* {session.data &&  */}
+        <div className="p-10 flex flex-wrap justify-around w-full h-screen bg-slate-100">
             <CourseCard course={course} />
             <UpdateCard course={course} setCourse={setCourse} />
-        </div>}
+        </div>
+        {/* } */}
 
-        {!session.data && <div className=" mt-9">
+        {/* {!session.data && <div className="mt-12 flex flex-wrap justify-center">
                 <p className="text-4xl mb-3">You are logged out!</p>
                 <Button text="Signin" onClick={() => signIn()}/>
-        </div>}
+        </div>} */}
     </div>
 }
 
