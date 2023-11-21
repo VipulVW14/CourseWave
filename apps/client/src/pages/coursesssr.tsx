@@ -4,7 +4,7 @@ import { useRouter } from "next/router.js";
 import { Course } from "store";
 import { getAllCourses} from "../../../backend/client/client"
 import {signIn, useSession, signOut} from "next-auth/react"
-// import { NEXT_URL } from "@/config";
+
 
 function Courses({courses}: {courses: Course[]}) {
     const session = useSession();
