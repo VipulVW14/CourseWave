@@ -4,7 +4,6 @@ import { Coiny, Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import { Router, useRouter } from 'next/router'
 
- 
 export default function Home() {
   const session = useSession();
   const router = useRouter();
