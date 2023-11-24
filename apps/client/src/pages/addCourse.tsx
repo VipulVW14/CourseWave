@@ -14,8 +14,6 @@ function AddCourse() {
     const [price, setPrice] = useState<number>(0);
 
     return <div className="">
-
-        {/* {session.data &&  */}
         <div>
             <GrayTopper text="Add Course"/>
             <div className="p-10 flex flex-wrap justify-around w-full h-screen bg-slate-100">
