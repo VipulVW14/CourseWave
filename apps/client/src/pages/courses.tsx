@@ -5,8 +5,6 @@ import { Course } from "store";
 import { getAllCourses} from "../../../backend/client/client"
 import {signIn, useSession, signOut} from "next-auth/react"
 
-// import { NEXT_URL } from "@/config";
-
 function Courses() {
     const session = useSession();
     
