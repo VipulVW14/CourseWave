@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addCourse = exports.updateCourseById = exports.getCourseById = exports.getAllCourses = void 0;
 const zeus_1 = require("./zeus");
-const chain = (0, zeus_1.Chain)("http://localhost:8112/v1/graphql");
+const chain = (0, zeus_1.Chain)("http://ec2-34-203-212-148.compute-1.amazonaws.com:8112/v1/graphql");
 function getAllCourses() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -21,7 +21,6 @@ function getAllCourses() {
                     { id: true, title: true, description: true, imageLink: true, price: true }
                 ]
             });
-            console.log(response.courses);
             return response.courses;
         }
         catch (error) {
@@ -31,7 +30,6 @@ function getAllCourses() {
     });
 }
 exports.getAllCourses = getAllCourses;
-getAllCourses();
 function getCourseById(courseId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -49,7 +47,6 @@ function getCourseById(courseId) {
     });
 }
 exports.getCourseById = getCourseById;
-// getCourseById("0ae1e008-cfa6-43f3-989d-b5b89cc87b2f");
 function updateCourseById(courseId, updatedCourse) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
