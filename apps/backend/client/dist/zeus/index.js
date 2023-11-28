@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.$ = exports.GRAPHQL_TYPE_SEPARATOR = exports.START_VAR_NAME = exports.resolverFor = exports.InternalArgsBuilt = exports.ResolveFromPath = exports.purifyGraphQLKey = exports.PrepareScalarPaths = exports.GraphQLError = exports.SEPARATOR = exports.traverseResponse = exports.decodeScalarsInResponse = exports.ZeusScalars = exports.Gql = exports.TypeFromSelector = exports.Selector = exports.ZeusSelect = exports.Zeus = exports.Subscription = exports.SubscriptionThunder = exports.Chain = exports.Thunder = exports.InternalsBuildQuery = exports.apiFetch = exports.apiSubscription = exports.HEADERS = exports.HOST = void 0;
 const const_1 = require("./const");
-exports.HOST = "http://localhost:8112/v1/graphql";
+exports.HOST = "http://ec2-34-203-212-148.compute-1.amazonaws.com:8112/v1/graphql";
 exports.HEADERS = {};
 const apiSubscription = (options) => (query) => {
     var _a, _b, _c;
