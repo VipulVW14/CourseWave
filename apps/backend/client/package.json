@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "zeus": "npx graphql-zeus http://localhost:8112/v1/graphql ./client"
+    "zeus": "npx graphql-zeus http://ec2-34-203-212-148.compute-1.amazonaws.com:8112/v1/graphql ./client"
   },
   "keywords": [],
   "author": "",
