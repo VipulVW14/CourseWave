@@ -1,1 +1,2 @@
 - "!include public_courses.yaml"
+- "!include public_users.yaml"
