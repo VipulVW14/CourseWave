@@ -19,8 +19,6 @@ build
 *.pem
 Dockerfile
 docker-compose.yml
-nginx.conf
-known_hosts
 
 # debug
 npm-debug.log*
