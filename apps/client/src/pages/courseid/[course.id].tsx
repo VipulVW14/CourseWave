@@ -1,19 +1,18 @@
 'use client'
 import { useParams } from "next/navigation";
 import { Button, GrayTopper } from "ui";
-import { Course } from "store";
 import { useRouter } from "next/router.js";
 import { use, useEffect, useState, useSyncExternalStore } from "react";
 import { getCourseById, updateCourseById } from "../../../../backend/client/client"
 import {signIn, useSession, signOut} from "next-auth/react"
-
+import {useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
+// import { courseState, courseTitle, coursePrice, isCourseLoading, courseImage } from 'store';
 
 export default function updateCourse(){
     const session = useSession();
     const router = useRouter();
 
     let params = useParams();
-
     const courseId = Object.values(params)[0];    
 
     const [course, setCourse] = useState<{ title: string; description: string; imageLink: string; price: number; id: unknown } | undefined>();
@@ -35,17 +34,17 @@ export default function updateCourse(){
 
     return <div>
         <GrayTopper text={course.title}/>
-        {/* {session.data &&  */}
+        {session.data && 
         <div className="p-10 flex flex-wrap justify-around w-full h-screen bg-slate-100">
             <CourseCard course={course} />
             <UpdateCard course={course} setCourse={setCourse} />
         </div>
-        {/* } */}
+        }
 
-        {/* {!session.data && <div className="mt-12 flex flex-wrap justify-center">
+        {!session.data && <div className="mt-12 flex flex-wrap justify-center">
                 <p className="text-4xl mb-3">You are logged out!</p>
                 <Button text="Signin" onClick={() => signIn()}/>
-        </div>} */}
+        </div>}
     </div>
 }
 

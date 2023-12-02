@@ -3,8 +3,6 @@ import {useState} from "react";
 import { addCourse } from "../../../backend/client/client"
 import {signIn, useSession, signOut} from "next-auth/react"
 
-
-
 function AddCourse() {
     const session = useSession();
 
@@ -14,7 +12,7 @@ function AddCourse() {
     const [price, setPrice] = useState<number>(0);
 
     return <div className="">
-        <div>
+        {session.data && <div>
             <GrayTopper text="Add Course"/>
             <div className="p-10 flex flex-wrap justify-around w-full h-screen bg-slate-100">
 
@@ -68,7 +66,7 @@ function AddCourse() {
                             }
                             const response = await addCourse(newCourse);
 
-                            alert("Course Added!");
+                            if(response) alert("Course Added!");
                         }}
                         className="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                         Add Course
@@ -81,14 +79,13 @@ function AddCourse() {
                 
 
             </div>
-        </div>
-        {/* } */}
+        </div>}
 
-        {/* {!session.data && <div className="mt-12 flex flex-wrap justify-center">
+        {!session.data && <div className="mt-12 flex flex-wrap justify-center">
                 <p className="text-4xl mb-3 mr-4">You are logged out!</p>
                 <Button text="Signin" onClick={() => signIn()}/>
             </div>
-        }          */}
+        }         
 
     </div>
 }

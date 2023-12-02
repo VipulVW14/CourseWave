@@ -63,14 +63,15 @@ export async function addCourse(newCourse: ValueTypes["courses_set_input"]) {
         { id: true, title: true }
       ],
     });
-    return response.insert_courses_one;
+    return true;
   }catch(error){
     console.log(error);
+    return false;
   }  
 }
 
 // User clients
-export async function createUser(username, password) {
+export async function createUser(username:string, password:string) {
   try{
     const response= await chain('mutation')({
       insert_users_one: [{
@@ -90,7 +91,7 @@ export async function createUser(username, password) {
   }
 } 
 
-export async function signinUser(username, password) {
+export async function signinUser(username:string, password:string) {
   try{
     const response = await chain('query')({
       users_by_pk: [
