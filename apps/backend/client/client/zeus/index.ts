@@ -1062,12 +1062,21 @@ count?: [{	columns?: Array<ValueTypes["courses_select_column"]> | undefined | nu
 delete_courses?: [{	/** filter the rows which have to be deleted */
 	where: ValueTypes["courses_bool_exp"] | Variable<any, string>},ValueTypes["courses_mutation_response"]],
 delete_courses_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},ValueTypes["courses"]],
+delete_users?: [{	/** filter the rows which have to be deleted */
+	where: ValueTypes["users_bool_exp"] | Variable<any, string>},ValueTypes["users_mutation_response"]],
+delete_users_by_pk?: [{	password: string | Variable<any, string>,	username: string | Variable<any, string>},ValueTypes["users"]],
 insert_courses?: [{	/** the rows to be inserted */
 	objects: Array<ValueTypes["courses_insert_input"]> | Variable<any, string>,	/** upsert condition */
 	on_conflict?: ValueTypes["courses_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["courses_mutation_response"]],
 insert_courses_one?: [{	/** the row to be inserted */
 	object: ValueTypes["courses_insert_input"] | Variable<any, string>,	/** upsert condition */
 	on_conflict?: ValueTypes["courses_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["courses"]],
+insert_users?: [{	/** the rows to be inserted */
+	objects: Array<ValueTypes["users_insert_input"]> | Variable<any, string>,	/** upsert condition */
+	on_conflict?: ValueTypes["users_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["users_mutation_response"]],
+insert_users_one?: [{	/** the row to be inserted */
+	object: ValueTypes["users_insert_input"] | Variable<any, string>,	/** upsert condition */
+	on_conflict?: ValueTypes["users_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["users"]],
 update_courses?: [{	/** increments the numeric columns with given value of the filtered values */
 	_inc?: ValueTypes["courses_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["courses_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
@@ -1077,6 +1086,13 @@ update_courses_by_pk?: [{	/** increments the numeric columns with given value of
 	_set?: ValueTypes["courses_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["courses_pk_columns_input"] | Variable<any, string>},ValueTypes["courses"]],
 update_courses_many?: [{	/** updates to execute, in order */
 	updates: Array<ValueTypes["courses_updates"]> | Variable<any, string>},ValueTypes["courses_mutation_response"]],
+update_users?: [{	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["users_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
+	where: ValueTypes["users_bool_exp"] | Variable<any, string>},ValueTypes["users_mutation_response"]],
+update_users_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["users_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["users_pk_columns_input"] | Variable<any, string>},ValueTypes["users"]],
+update_users_many?: [{	/** updates to execute, in order */
+	updates: Array<ValueTypes["users_updates"]> | Variable<any, string>},ValueTypes["users_mutation_response"]],
 		__typename?: boolean | `@${string}`
 }>;
 	/** column ordering options */
@@ -1095,6 +1111,19 @@ courses_aggregate?: [{	/** distinct select on columns */
 	order_by?: Array<ValueTypes["courses_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
 	where?: ValueTypes["courses_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["courses_aggregate"]],
 courses_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},ValueTypes["courses"]],
+users?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["users_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["users_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["users_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["users"]],
+users_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["users_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["users_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["users_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["users_aggregate"]],
+users_by_pk?: [{	password: string | Variable<any, string>,	username: string | Variable<any, string>},ValueTypes["users"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["subscription_root"]: AliasType<{
@@ -1115,8 +1144,122 @@ courses_stream?: [{	/** maximum number of rows returned in a single batch */
 	batch_size: number | Variable<any, string>,	/** cursor to stream the results returned by the query */
 	cursor: Array<ValueTypes["courses_stream_cursor_input"] | undefined | null> | Variable<any, string>,	/** filter the rows returned */
 	where?: ValueTypes["courses_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["courses"]],
+users?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["users_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["users_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["users_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["users"]],
+users_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["users_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["users_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["users_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["users_aggregate"]],
+users_by_pk?: [{	password: string | Variable<any, string>,	username: string | Variable<any, string>},ValueTypes["users"]],
+users_stream?: [{	/** maximum number of rows returned in a single batch */
+	batch_size: number | Variable<any, string>,	/** cursor to stream the results returned by the query */
+	cursor: Array<ValueTypes["users_stream_cursor_input"] | undefined | null> | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["users_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["users"]],
 		__typename?: boolean | `@${string}`
 }>;
+	/** columns and relationships of "users" */
+["users"]: AliasType<{
+	password?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregated selection of "users" */
+["users_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["users_aggregate_fields"],
+	nodes?:ValueTypes["users"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate fields of "users" */
+["users_aggregate_fields"]: AliasType<{
+count?: [{	columns?: Array<ValueTypes["users_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
+	max?:ValueTypes["users_max_fields"],
+	min?:ValueTypes["users_min_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
+["users_bool_exp"]: {
+	_and?: Array<ValueTypes["users_bool_exp"]> | undefined | null | Variable<any, string>,
+	_not?: ValueTypes["users_bool_exp"] | undefined | null | Variable<any, string>,
+	_or?: Array<ValueTypes["users_bool_exp"]> | undefined | null | Variable<any, string>,
+	password?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	username?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>
+};
+	/** unique or primary key constraints on table "users" */
+["users_constraint"]:users_constraint;
+	/** input type for inserting data into table "users" */
+["users_insert_input"]: {
+	password?: string | undefined | null | Variable<any, string>,
+	username?: string | undefined | null | Variable<any, string>
+};
+	/** aggregate max on columns */
+["users_max_fields"]: AliasType<{
+	password?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate min on columns */
+["users_min_fields"]: AliasType<{
+	password?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** response of any mutation on the table "users" */
+["users_mutation_response"]: AliasType<{
+	/** number of rows affected by the mutation */
+	affected_rows?:boolean | `@${string}`,
+	/** data from the rows affected by the mutation */
+	returning?:ValueTypes["users"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** on_conflict condition type for table "users" */
+["users_on_conflict"]: {
+	constraint: ValueTypes["users_constraint"] | Variable<any, string>,
+	update_columns: Array<ValueTypes["users_update_column"]> | Variable<any, string>,
+	where?: ValueTypes["users_bool_exp"] | undefined | null | Variable<any, string>
+};
+	/** Ordering options when selecting data from "users". */
+["users_order_by"]: {
+	password?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	username?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** primary key columns input for table: users */
+["users_pk_columns_input"]: {
+	password: string | Variable<any, string>,
+	username: string | Variable<any, string>
+};
+	/** select columns of table "users" */
+["users_select_column"]:users_select_column;
+	/** input type for updating data in table "users" */
+["users_set_input"]: {
+	password?: string | undefined | null | Variable<any, string>,
+	username?: string | undefined | null | Variable<any, string>
+};
+	/** Streaming cursor of the table "users" */
+["users_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ValueTypes["users_stream_cursor_value_input"] | Variable<any, string>,
+	/** cursor ordering */
+	ordering?: ValueTypes["cursor_ordering"] | undefined | null | Variable<any, string>
+};
+	/** Initial value of the column from where the streaming should start */
+["users_stream_cursor_value_input"]: {
+	password?: string | undefined | null | Variable<any, string>,
+	username?: string | undefined | null | Variable<any, string>
+};
+	/** update columns of table "users" */
+["users_update_column"]:users_update_column;
+	["users_updates"]: {
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["users_set_input"] | undefined | null | Variable<any, string>,
+	/** filter the rows which have to be updated */
+	where: ValueTypes["users_bool_exp"] | Variable<any, string>
+};
 	["uuid"]:unknown;
 	/** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 ["uuid_comparison_exp"]: {
@@ -1364,12 +1507,21 @@ count?: [{	columns?: Array<ResolverInputTypes["courses_select_column"]> | undefi
 delete_courses?: [{	/** filter the rows which have to be deleted */
 	where: ResolverInputTypes["courses_bool_exp"]},ResolverInputTypes["courses_mutation_response"]],
 delete_courses_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["courses"]],
+delete_users?: [{	/** filter the rows which have to be deleted */
+	where: ResolverInputTypes["users_bool_exp"]},ResolverInputTypes["users_mutation_response"]],
+delete_users_by_pk?: [{	password: string,	username: string},ResolverInputTypes["users"]],
 insert_courses?: [{	/** the rows to be inserted */
 	objects: Array<ResolverInputTypes["courses_insert_input"]>,	/** upsert condition */
 	on_conflict?: ResolverInputTypes["courses_on_conflict"] | undefined | null},ResolverInputTypes["courses_mutation_response"]],
 insert_courses_one?: [{	/** the row to be inserted */
 	object: ResolverInputTypes["courses_insert_input"],	/** upsert condition */
 	on_conflict?: ResolverInputTypes["courses_on_conflict"] | undefined | null},ResolverInputTypes["courses"]],
+insert_users?: [{	/** the rows to be inserted */
+	objects: Array<ResolverInputTypes["users_insert_input"]>,	/** upsert condition */
+	on_conflict?: ResolverInputTypes["users_on_conflict"] | undefined | null},ResolverInputTypes["users_mutation_response"]],
+insert_users_one?: [{	/** the row to be inserted */
+	object: ResolverInputTypes["users_insert_input"],	/** upsert condition */
+	on_conflict?: ResolverInputTypes["users_on_conflict"] | undefined | null},ResolverInputTypes["users"]],
 update_courses?: [{	/** increments the numeric columns with given value of the filtered values */
 	_inc?: ResolverInputTypes["courses_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["courses_set_input"] | undefined | null,	/** filter the rows which have to be updated */
@@ -1379,6 +1531,13 @@ update_courses_by_pk?: [{	/** increments the numeric columns with given value of
 	_set?: ResolverInputTypes["courses_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["courses_pk_columns_input"]},ResolverInputTypes["courses"]],
 update_courses_many?: [{	/** updates to execute, in order */
 	updates: Array<ResolverInputTypes["courses_updates"]>},ResolverInputTypes["courses_mutation_response"]],
+update_users?: [{	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["users_set_input"] | undefined | null,	/** filter the rows which have to be updated */
+	where: ResolverInputTypes["users_bool_exp"]},ResolverInputTypes["users_mutation_response"]],
+update_users_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["users_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["users_pk_columns_input"]},ResolverInputTypes["users"]],
+update_users_many?: [{	/** updates to execute, in order */
+	updates: Array<ResolverInputTypes["users_updates"]>},ResolverInputTypes["users_mutation_response"]],
 		__typename?: boolean | `@${string}`
 }>;
 	/** column ordering options */
@@ -1397,6 +1556,19 @@ courses_aggregate?: [{	/** distinct select on columns */
 	order_by?: Array<ResolverInputTypes["courses_order_by"]> | undefined | null,	/** filter the rows returned */
 	where?: ResolverInputTypes["courses_bool_exp"] | undefined | null},ResolverInputTypes["courses_aggregate"]],
 courses_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["courses"]],
+users?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["users_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["users_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["users_bool_exp"] | undefined | null},ResolverInputTypes["users"]],
+users_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["users_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["users_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["users_bool_exp"] | undefined | null},ResolverInputTypes["users_aggregate"]],
+users_by_pk?: [{	password: string,	username: string},ResolverInputTypes["users"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["subscription_root"]: AliasType<{
@@ -1417,8 +1589,122 @@ courses_stream?: [{	/** maximum number of rows returned in a single batch */
 	batch_size: number,	/** cursor to stream the results returned by the query */
 	cursor: Array<ResolverInputTypes["courses_stream_cursor_input"] | undefined | null>,	/** filter the rows returned */
 	where?: ResolverInputTypes["courses_bool_exp"] | undefined | null},ResolverInputTypes["courses"]],
+users?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["users_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["users_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["users_bool_exp"] | undefined | null},ResolverInputTypes["users"]],
+users_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["users_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["users_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["users_bool_exp"] | undefined | null},ResolverInputTypes["users_aggregate"]],
+users_by_pk?: [{	password: string,	username: string},ResolverInputTypes["users"]],
+users_stream?: [{	/** maximum number of rows returned in a single batch */
+	batch_size: number,	/** cursor to stream the results returned by the query */
+	cursor: Array<ResolverInputTypes["users_stream_cursor_input"] | undefined | null>,	/** filter the rows returned */
+	where?: ResolverInputTypes["users_bool_exp"] | undefined | null},ResolverInputTypes["users"]],
 		__typename?: boolean | `@${string}`
 }>;
+	/** columns and relationships of "users" */
+["users"]: AliasType<{
+	password?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregated selection of "users" */
+["users_aggregate"]: AliasType<{
+	aggregate?:ResolverInputTypes["users_aggregate_fields"],
+	nodes?:ResolverInputTypes["users"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate fields of "users" */
+["users_aggregate_fields"]: AliasType<{
+count?: [{	columns?: Array<ResolverInputTypes["users_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
+	max?:ResolverInputTypes["users_max_fields"],
+	min?:ResolverInputTypes["users_min_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
+["users_bool_exp"]: {
+	_and?: Array<ResolverInputTypes["users_bool_exp"]> | undefined | null,
+	_not?: ResolverInputTypes["users_bool_exp"] | undefined | null,
+	_or?: Array<ResolverInputTypes["users_bool_exp"]> | undefined | null,
+	password?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	username?: ResolverInputTypes["String_comparison_exp"] | undefined | null
+};
+	/** unique or primary key constraints on table "users" */
+["users_constraint"]:users_constraint;
+	/** input type for inserting data into table "users" */
+["users_insert_input"]: {
+	password?: string | undefined | null,
+	username?: string | undefined | null
+};
+	/** aggregate max on columns */
+["users_max_fields"]: AliasType<{
+	password?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate min on columns */
+["users_min_fields"]: AliasType<{
+	password?:boolean | `@${string}`,
+	username?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** response of any mutation on the table "users" */
+["users_mutation_response"]: AliasType<{
+	/** number of rows affected by the mutation */
+	affected_rows?:boolean | `@${string}`,
+	/** data from the rows affected by the mutation */
+	returning?:ResolverInputTypes["users"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** on_conflict condition type for table "users" */
+["users_on_conflict"]: {
+	constraint: ResolverInputTypes["users_constraint"],
+	update_columns: Array<ResolverInputTypes["users_update_column"]>,
+	where?: ResolverInputTypes["users_bool_exp"] | undefined | null
+};
+	/** Ordering options when selecting data from "users". */
+["users_order_by"]: {
+	password?: ResolverInputTypes["order_by"] | undefined | null,
+	username?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** primary key columns input for table: users */
+["users_pk_columns_input"]: {
+	password: string,
+	username: string
+};
+	/** select columns of table "users" */
+["users_select_column"]:users_select_column;
+	/** input type for updating data in table "users" */
+["users_set_input"]: {
+	password?: string | undefined | null,
+	username?: string | undefined | null
+};
+	/** Streaming cursor of the table "users" */
+["users_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ResolverInputTypes["users_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null
+};
+	/** Initial value of the column from where the streaming should start */
+["users_stream_cursor_value_input"]: {
+	password?: string | undefined | null,
+	username?: string | undefined | null
+};
+	/** update columns of table "users" */
+["users_update_column"]:users_update_column;
+	["users_updates"]: {
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["users_set_input"] | undefined | null,
+	/** filter the rows which have to be updated */
+	where: ResolverInputTypes["users_bool_exp"]
+};
 	["uuid"]:unknown;
 	/** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 ["uuid_comparison_exp"]: {
@@ -1648,16 +1934,30 @@ export type ModelTypes = {
 	delete_courses?: ModelTypes["courses_mutation_response"] | undefined,
 	/** delete single row from the table: "courses" */
 	delete_courses_by_pk?: ModelTypes["courses"] | undefined,
+	/** delete data from the table: "users" */
+	delete_users?: ModelTypes["users_mutation_response"] | undefined,
+	/** delete single row from the table: "users" */
+	delete_users_by_pk?: ModelTypes["users"] | undefined,
 	/** insert data into the table: "courses" */
 	insert_courses?: ModelTypes["courses_mutation_response"] | undefined,
 	/** insert a single row into the table: "courses" */
 	insert_courses_one?: ModelTypes["courses"] | undefined,
+	/** insert data into the table: "users" */
+	insert_users?: ModelTypes["users_mutation_response"] | undefined,
+	/** insert a single row into the table: "users" */
+	insert_users_one?: ModelTypes["users"] | undefined,
 	/** update data of the table: "courses" */
 	update_courses?: ModelTypes["courses_mutation_response"] | undefined,
 	/** update single row of the table: "courses" */
 	update_courses_by_pk?: ModelTypes["courses"] | undefined,
 	/** update multiples rows of table: "courses" */
-	update_courses_many?: Array<ModelTypes["courses_mutation_response"] | undefined> | undefined
+	update_courses_many?: Array<ModelTypes["courses_mutation_response"] | undefined> | undefined,
+	/** update data of the table: "users" */
+	update_users?: ModelTypes["users_mutation_response"] | undefined,
+	/** update single row of the table: "users" */
+	update_users_by_pk?: ModelTypes["users"] | undefined,
+	/** update multiples rows of table: "users" */
+	update_users_many?: Array<ModelTypes["users_mutation_response"] | undefined> | undefined
 };
 	["order_by"]:order_by;
 	["query_root"]: {
@@ -1666,7 +1966,13 @@ export type ModelTypes = {
 	/** fetch aggregated fields from the table: "courses" */
 	courses_aggregate: ModelTypes["courses_aggregate"],
 	/** fetch data from the table: "courses" using primary key columns */
-	courses_by_pk?: ModelTypes["courses"] | undefined
+	courses_by_pk?: ModelTypes["courses"] | undefined,
+	/** fetch data from the table: "users" */
+	users: Array<ModelTypes["users"]>,
+	/** fetch aggregated fields from the table: "users" */
+	users_aggregate: ModelTypes["users_aggregate"],
+	/** fetch data from the table: "users" using primary key columns */
+	users_by_pk?: ModelTypes["users"] | undefined
 };
 	["subscription_root"]: {
 		/** fetch data from the table: "courses" */
@@ -1676,7 +1982,103 @@ export type ModelTypes = {
 	/** fetch data from the table: "courses" using primary key columns */
 	courses_by_pk?: ModelTypes["courses"] | undefined,
 	/** fetch data from the table in a streaming manner: "courses" */
-	courses_stream: Array<ModelTypes["courses"]>
+	courses_stream: Array<ModelTypes["courses"]>,
+	/** fetch data from the table: "users" */
+	users: Array<ModelTypes["users"]>,
+	/** fetch aggregated fields from the table: "users" */
+	users_aggregate: ModelTypes["users_aggregate"],
+	/** fetch data from the table: "users" using primary key columns */
+	users_by_pk?: ModelTypes["users"] | undefined,
+	/** fetch data from the table in a streaming manner: "users" */
+	users_stream: Array<ModelTypes["users"]>
+};
+	/** columns and relationships of "users" */
+["users"]: {
+		password: string,
+	username: string
+};
+	/** aggregated selection of "users" */
+["users_aggregate"]: {
+		aggregate?: ModelTypes["users_aggregate_fields"] | undefined,
+	nodes: Array<ModelTypes["users"]>
+};
+	/** aggregate fields of "users" */
+["users_aggregate_fields"]: {
+		count: number,
+	max?: ModelTypes["users_max_fields"] | undefined,
+	min?: ModelTypes["users_min_fields"] | undefined
+};
+	/** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
+["users_bool_exp"]: {
+	_and?: Array<ModelTypes["users_bool_exp"]> | undefined,
+	_not?: ModelTypes["users_bool_exp"] | undefined,
+	_or?: Array<ModelTypes["users_bool_exp"]> | undefined,
+	password?: ModelTypes["String_comparison_exp"] | undefined,
+	username?: ModelTypes["String_comparison_exp"] | undefined
+};
+	["users_constraint"]:users_constraint;
+	/** input type for inserting data into table "users" */
+["users_insert_input"]: {
+	password?: string | undefined,
+	username?: string | undefined
+};
+	/** aggregate max on columns */
+["users_max_fields"]: {
+		password?: string | undefined,
+	username?: string | undefined
+};
+	/** aggregate min on columns */
+["users_min_fields"]: {
+		password?: string | undefined,
+	username?: string | undefined
+};
+	/** response of any mutation on the table "users" */
+["users_mutation_response"]: {
+		/** number of rows affected by the mutation */
+	affected_rows: number,
+	/** data from the rows affected by the mutation */
+	returning: Array<ModelTypes["users"]>
+};
+	/** on_conflict condition type for table "users" */
+["users_on_conflict"]: {
+	constraint: ModelTypes["users_constraint"],
+	update_columns: Array<ModelTypes["users_update_column"]>,
+	where?: ModelTypes["users_bool_exp"] | undefined
+};
+	/** Ordering options when selecting data from "users". */
+["users_order_by"]: {
+	password?: ModelTypes["order_by"] | undefined,
+	username?: ModelTypes["order_by"] | undefined
+};
+	/** primary key columns input for table: users */
+["users_pk_columns_input"]: {
+	password: string,
+	username: string
+};
+	["users_select_column"]:users_select_column;
+	/** input type for updating data in table "users" */
+["users_set_input"]: {
+	password?: string | undefined,
+	username?: string | undefined
+};
+	/** Streaming cursor of the table "users" */
+["users_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ModelTypes["users_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: ModelTypes["cursor_ordering"] | undefined
+};
+	/** Initial value of the column from where the streaming should start */
+["users_stream_cursor_value_input"]: {
+	password?: string | undefined,
+	username?: string | undefined
+};
+	["users_update_column"]:users_update_column;
+	["users_updates"]: {
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ModelTypes["users_set_input"] | undefined,
+	/** filter the rows which have to be updated */
+	where: ModelTypes["users_bool_exp"]
 };
 	["uuid"]:any;
 	/** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
@@ -1921,16 +2323,30 @@ export type GraphQLTypes = {
 	delete_courses?: GraphQLTypes["courses_mutation_response"] | undefined,
 	/** delete single row from the table: "courses" */
 	delete_courses_by_pk?: GraphQLTypes["courses"] | undefined,
+	/** delete data from the table: "users" */
+	delete_users?: GraphQLTypes["users_mutation_response"] | undefined,
+	/** delete single row from the table: "users" */
+	delete_users_by_pk?: GraphQLTypes["users"] | undefined,
 	/** insert data into the table: "courses" */
 	insert_courses?: GraphQLTypes["courses_mutation_response"] | undefined,
 	/** insert a single row into the table: "courses" */
 	insert_courses_one?: GraphQLTypes["courses"] | undefined,
+	/** insert data into the table: "users" */
+	insert_users?: GraphQLTypes["users_mutation_response"] | undefined,
+	/** insert a single row into the table: "users" */
+	insert_users_one?: GraphQLTypes["users"] | undefined,
 	/** update data of the table: "courses" */
 	update_courses?: GraphQLTypes["courses_mutation_response"] | undefined,
 	/** update single row of the table: "courses" */
 	update_courses_by_pk?: GraphQLTypes["courses"] | undefined,
 	/** update multiples rows of table: "courses" */
-	update_courses_many?: Array<GraphQLTypes["courses_mutation_response"] | undefined> | undefined
+	update_courses_many?: Array<GraphQLTypes["courses_mutation_response"] | undefined> | undefined,
+	/** update data of the table: "users" */
+	update_users?: GraphQLTypes["users_mutation_response"] | undefined,
+	/** update single row of the table: "users" */
+	update_users_by_pk?: GraphQLTypes["users"] | undefined,
+	/** update multiples rows of table: "users" */
+	update_users_many?: Array<GraphQLTypes["users_mutation_response"] | undefined> | undefined
 };
 	/** column ordering options */
 ["order_by"]: order_by;
@@ -1941,7 +2357,13 @@ export type GraphQLTypes = {
 	/** fetch aggregated fields from the table: "courses" */
 	courses_aggregate: GraphQLTypes["courses_aggregate"],
 	/** fetch data from the table: "courses" using primary key columns */
-	courses_by_pk?: GraphQLTypes["courses"] | undefined
+	courses_by_pk?: GraphQLTypes["courses"] | undefined,
+	/** fetch data from the table: "users" */
+	users: Array<GraphQLTypes["users"]>,
+	/** fetch aggregated fields from the table: "users" */
+	users_aggregate: GraphQLTypes["users_aggregate"],
+	/** fetch data from the table: "users" using primary key columns */
+	users_by_pk?: GraphQLTypes["users"] | undefined
 };
 	["subscription_root"]: {
 	__typename: "subscription_root",
@@ -1952,7 +2374,112 @@ export type GraphQLTypes = {
 	/** fetch data from the table: "courses" using primary key columns */
 	courses_by_pk?: GraphQLTypes["courses"] | undefined,
 	/** fetch data from the table in a streaming manner: "courses" */
-	courses_stream: Array<GraphQLTypes["courses"]>
+	courses_stream: Array<GraphQLTypes["courses"]>,
+	/** fetch data from the table: "users" */
+	users: Array<GraphQLTypes["users"]>,
+	/** fetch aggregated fields from the table: "users" */
+	users_aggregate: GraphQLTypes["users_aggregate"],
+	/** fetch data from the table: "users" using primary key columns */
+	users_by_pk?: GraphQLTypes["users"] | undefined,
+	/** fetch data from the table in a streaming manner: "users" */
+	users_stream: Array<GraphQLTypes["users"]>
+};
+	/** columns and relationships of "users" */
+["users"]: {
+	__typename: "users",
+	password: string,
+	username: string
+};
+	/** aggregated selection of "users" */
+["users_aggregate"]: {
+	__typename: "users_aggregate",
+	aggregate?: GraphQLTypes["users_aggregate_fields"] | undefined,
+	nodes: Array<GraphQLTypes["users"]>
+};
+	/** aggregate fields of "users" */
+["users_aggregate_fields"]: {
+	__typename: "users_aggregate_fields",
+	count: number,
+	max?: GraphQLTypes["users_max_fields"] | undefined,
+	min?: GraphQLTypes["users_min_fields"] | undefined
+};
+	/** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
+["users_bool_exp"]: {
+		_and?: Array<GraphQLTypes["users_bool_exp"]> | undefined,
+	_not?: GraphQLTypes["users_bool_exp"] | undefined,
+	_or?: Array<GraphQLTypes["users_bool_exp"]> | undefined,
+	password?: GraphQLTypes["String_comparison_exp"] | undefined,
+	username?: GraphQLTypes["String_comparison_exp"] | undefined
+};
+	/** unique or primary key constraints on table "users" */
+["users_constraint"]: users_constraint;
+	/** input type for inserting data into table "users" */
+["users_insert_input"]: {
+		password?: string | undefined,
+	username?: string | undefined
+};
+	/** aggregate max on columns */
+["users_max_fields"]: {
+	__typename: "users_max_fields",
+	password?: string | undefined,
+	username?: string | undefined
+};
+	/** aggregate min on columns */
+["users_min_fields"]: {
+	__typename: "users_min_fields",
+	password?: string | undefined,
+	username?: string | undefined
+};
+	/** response of any mutation on the table "users" */
+["users_mutation_response"]: {
+	__typename: "users_mutation_response",
+	/** number of rows affected by the mutation */
+	affected_rows: number,
+	/** data from the rows affected by the mutation */
+	returning: Array<GraphQLTypes["users"]>
+};
+	/** on_conflict condition type for table "users" */
+["users_on_conflict"]: {
+		constraint: GraphQLTypes["users_constraint"],
+	update_columns: Array<GraphQLTypes["users_update_column"]>,
+	where?: GraphQLTypes["users_bool_exp"] | undefined
+};
+	/** Ordering options when selecting data from "users". */
+["users_order_by"]: {
+		password?: GraphQLTypes["order_by"] | undefined,
+	username?: GraphQLTypes["order_by"] | undefined
+};
+	/** primary key columns input for table: users */
+["users_pk_columns_input"]: {
+		password: string,
+	username: string
+};
+	/** select columns of table "users" */
+["users_select_column"]: users_select_column;
+	/** input type for updating data in table "users" */
+["users_set_input"]: {
+		password?: string | undefined,
+	username?: string | undefined
+};
+	/** Streaming cursor of the table "users" */
+["users_stream_cursor_input"]: {
+		/** Stream column input with initial value */
+	initial_value: GraphQLTypes["users_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: GraphQLTypes["cursor_ordering"] | undefined
+};
+	/** Initial value of the column from where the streaming should start */
+["users_stream_cursor_value_input"]: {
+		password?: string | undefined,
+	username?: string | undefined
+};
+	/** update columns of table "users" */
+["users_update_column"]: users_update_column;
+	["users_updates"]: {
+		/** sets the columns of the filtered rows to the given values */
+	_set?: GraphQLTypes["users_set_input"] | undefined,
+	/** filter the rows which have to be updated */
+	where: GraphQLTypes["users_bool_exp"]
 };
 	["uuid"]: "scalar" & { name: "uuid" };
 	/** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
@@ -2002,6 +2529,20 @@ export const enum order_by {
 	desc_nulls_first = "desc_nulls_first",
 	desc_nulls_last = "desc_nulls_last"
 }
+/** unique or primary key constraints on table "users" */
+export const enum users_constraint {
+	users_pkey = "users_pkey"
+}
+/** select columns of table "users" */
+export const enum users_select_column {
+	password = "password",
+	username = "username"
+}
+/** update columns of table "users" */
+export const enum users_update_column {
+	password = "password",
+	username = "username"
+}
 
 type ZEUS_VARIABLES = {
 	["Int_comparison_exp"]: ValueTypes["Int_comparison_exp"];
@@ -2021,6 +2562,18 @@ type ZEUS_VARIABLES = {
 	["courses_updates"]: ValueTypes["courses_updates"];
 	["cursor_ordering"]: ValueTypes["cursor_ordering"];
 	["order_by"]: ValueTypes["order_by"];
+	["users_bool_exp"]: ValueTypes["users_bool_exp"];
+	["users_constraint"]: ValueTypes["users_constraint"];
+	["users_insert_input"]: ValueTypes["users_insert_input"];
+	["users_on_conflict"]: ValueTypes["users_on_conflict"];
+	["users_order_by"]: ValueTypes["users_order_by"];
+	["users_pk_columns_input"]: ValueTypes["users_pk_columns_input"];
+	["users_select_column"]: ValueTypes["users_select_column"];
+	["users_set_input"]: ValueTypes["users_set_input"];
+	["users_stream_cursor_input"]: ValueTypes["users_stream_cursor_input"];
+	["users_stream_cursor_value_input"]: ValueTypes["users_stream_cursor_value_input"];
+	["users_update_column"]: ValueTypes["users_update_column"];
+	["users_updates"]: ValueTypes["users_updates"];
 	["uuid"]: ValueTypes["uuid"];
 	["uuid_comparison_exp"]: ValueTypes["uuid_comparison_exp"];
 }

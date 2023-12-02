@@ -1,6 +1,8 @@
 import { Chain, ValueTypes } from "./zeus";
 const chain = Chain("http://ec2-34-203-212-148.compute-1.amazonaws.com:8112/v1/graphql");
 
+
+// Course clients
 export async function getAllCourses() {
   try{
     const response= await chain("query")({
@@ -56,15 +58,52 @@ export async function updateCourseById(courseId: string, updatedCourse: ValueTyp
 export async function addCourse(newCourse: ValueTypes["courses_set_input"]) {
   try{
     const response = await chain('mutation')({
-      insert_courses_one: [{
-        object: newCourse
-      },{
-        id: true,
-        title: true
-      }],
+      insert_courses_one: [
+        { object: newCourse },
+        { id: true, title: true }
+      ],
     });
     return response.insert_courses_one;
   }catch(error){
     console.log(error);
   }  
 }
+
+// User clients
+export async function createUser(username, password) {
+  try{
+    const response= await chain('mutation')({
+      insert_users_one: [{
+        object:{
+        username: username,
+        password: password
+        }
+      }, {
+        username: true,
+        password: true
+      }],
+    })
+    return response.insert_users_one;
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+} 
+
+export async function signinUser(username, password) {
+  try{
+    const response = await chain('query')({
+      users_by_pk: [
+        { username, password },  
+        { username: true, password: true, __typename: true },  
+      ],
+    })
+    return response.users_by_pk;
+  }catch(error){
+    console.log(error);
+    return false;
+  }
+}
+ 
+
+ 

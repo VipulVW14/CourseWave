@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addCourse = exports.updateCourseById = exports.getCourseById = exports.getAllCourses = void 0;
+exports.signinUser = exports.createUser = exports.addCourse = exports.updateCourseById = exports.getCourseById = exports.getAllCourses = void 0;
 const zeus_1 = require("./zeus");
 const chain = (0, zeus_1.Chain)("http://ec2-34-203-212-148.compute-1.amazonaws.com:8112/v1/graphql");
+// Course clients
 function getAllCourses() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -77,12 +78,10 @@ function addCourse(newCourse) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const response = yield chain('mutation')({
-                insert_courses_one: [{
-                        object: newCourse
-                    }, {
-                        id: true,
-                        title: true
-                    }],
+                insert_courses_one: [
+                    { object: newCourse },
+                    { id: true, title: true }
+                ],
             });
             return response.insert_courses_one;
         }
@@ -92,3 +91,48 @@ function addCourse(newCourse) {
     });
 }
 exports.addCourse = addCourse;
+// User clients
+function createUser(username, password) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield chain('mutation')({
+                insert_users_one: [{
+                        object: {
+                            username: username,
+                            password: password
+                        }
+                    }, {
+                        username: true,
+                        password: true
+                    }],
+            });
+            console.log(response);
+            return response.insert_users_one;
+        }
+        catch (error) {
+            console.log(error);
+            return false;
+        }
+    });
+}
+exports.createUser = createUser;
+function signinUser(username, password) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield chain('query')({
+                users_by_pk: [
+                    { username, password },
+                    { username: true, password: true, __typename: true },
+                ],
+            });
+            console.log(response);
+            return true;
+        }
+        catch (error) {
+            console.log(error);
+            return false;
+        }
+    });
+}
+exports.signinUser = signinUser;
+signinUser("vipulvw", "Vipu");
