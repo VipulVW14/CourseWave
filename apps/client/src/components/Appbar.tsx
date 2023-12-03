@@ -21,7 +21,7 @@ function Appbar({}) {
                     <Button onClick={() => { router.push("/courses") }} text="Courses"/>
                 </div>
 
-                <div className="mr-11">
+                <div className="">
                     <Button onClick={() => { router.push("/addCourse") }} text="Add Course"/>
                 </div>
 
