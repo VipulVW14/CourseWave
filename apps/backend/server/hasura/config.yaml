@@ -1,5 +1,5 @@
 version: 3
-endpoint: http://ec2-34-229-61-67.compute-1.amazonaws.com:8112/
+endpoint: https://graphqlcoursewave.vipulwasnik.tech/
 metadata_directory: metadata
 # admin_secret: myadminsecretkey
 

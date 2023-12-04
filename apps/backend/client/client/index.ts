@@ -1,5 +1,5 @@
 import { Chain, ValueTypes } from "./zeus";
-const chain = Chain("http://ec2-34-229-61-67.compute-1.amazonaws.com:8112/v1/graphql");
+const chain = Chain("https://graphqlcoursewave.vipulwasnik.tech/v1/graphql");
 
 
 // Course clients
