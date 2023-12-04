@@ -1,5 +1,5 @@
 version: 3
-endpoint: http://ec2-34-203-212-148.compute-1.amazonaws.com:8112/
+endpoint: http://ec2-34-229-61-67.compute-1.amazonaws.com:8112/
 metadata_directory: metadata
 # admin_secret: myadminsecretkey
 

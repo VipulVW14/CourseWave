@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import { AllTypesProps, ReturnTypes, Ops } from './const';
-export const HOST = "http://ec2-34-203-212-148.compute-1.amazonaws.com:8112/v1/graphql"
+export const HOST = "http://ec2-34-229-61-67.compute-1.amazonaws.com:8112/v1/graphql"
 
 
 export const HEADERS = {}

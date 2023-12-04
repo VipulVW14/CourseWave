@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.signinUser = exports.createUser = exports.addCourse = exports.updateCourseById = exports.getCourseById = exports.getAllCourses = void 0;
 const zeus_1 = require("./zeus");
-const chain = (0, zeus_1.Chain)("http://ec2-34-203-212-148.compute-1.amazonaws.com:8112/v1/graphql");
+const chain = (0, zeus_1.Chain)("http://ec2-34-229-61-67.compute-1.amazonaws.com:8112/v1/graphql");
 // Course clients
 function getAllCourses() {
     return __awaiter(this, void 0, void 0, function* () {
