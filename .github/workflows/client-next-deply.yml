@@ -2,9 +2,9 @@ name: Deploy Client Next
 
 on:
   push:
-    # paths: 
-    #   - 'apps/client/**'
-    #   - 'packages/ui/**'
+    paths: 
+      - 'apps/client/**'
+      - 'packages/ui/**'
     branches:
       - main
 
@@ -24,4 +24,4 @@ jobs:
           chmod 400 keyfile
           mkdir -p ~/.ssh
           cp known_hosts ~/.ssh/known_hosts
-          ssh -i keyfile ubuntu@ec2-34-229-61-67.compute-1.amazonaws.com "sudo bash /home/ubuntu/CourseWave/apps/client/deploy.sh"
+          ssh -i keyfile ubuntu@ec2-34-201-151-207.compute-1.amazonaws.com"sudo bash /home/ubuntu/CourseWave/apps/client/deploy.sh"
