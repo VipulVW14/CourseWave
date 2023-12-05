@@ -45,4 +45,4 @@ To set up the project locally, follow these steps:
 2. Navigate to the project directory: `cd CourseWave`
 3. Configure environment variables.
 4. Install dependencies: `yarn install`
-5. Follow instructions in individual subdirectories (`apps/client`, `apps/backend/server`, etc.) for specific setup and deployment steps.
+5. Follow instructions in individual subdirectories (`apps/client`, `apps/backend/`, etc.) for specific setup and deployment steps.
