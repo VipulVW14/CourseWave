@@ -36,12 +36,10 @@ function Appbar({}) {
         </div>}
 
         {!session.data && <div className="flex justify-between">
-
             <div className="flex cursor-pointer" onClick={() => { router.push("/") }}>
                 <a href='/'><img className="h-14 w-14 rounded-full" src='https://i.postimg.cc/SJ7wjZLc/Blue-White-Simple-Modern-Course-Logo-2.png'alt='Logo'/></a>        
                 <p className="text-4xl font-medium ml-4 my-auto">CourseWave</p>
             </div>
-        
         </div>}
 
     </div>              
