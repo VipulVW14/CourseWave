@@ -46,13 +46,6 @@ To set up the project locally, follow these steps:
 3. Configure environment variables.
 4. Install dependencies: `yarn install`
 5. Follow instructions in individual subdirectories (`apps/client`, `apps/backend/server`, etc.) for specific setup and deployment steps.
-<!-- 5. Navigate to the backend hasura module: `cd apps/backend/server`
-6. Run `sudo docker-compose up`, `cd ./hasura` and configure the `config.yaml` file then run `npx hasura-cli console`.
-7. Navigate to backend client module: `cd apps/backend/client/client` and cofigure the GraphQL endpoint to `http://localhost:8112/v1/graphql` 
-8. Navigate to the frontend module: `cd apps/client`
-9. Run `npm run dev` -->
-
-
 
  
  
