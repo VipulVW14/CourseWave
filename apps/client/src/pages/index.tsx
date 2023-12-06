@@ -17,6 +17,7 @@ export default function Home() {
                 <Button text="Signin" onClick={() => signIn()}/>
             </div>
           }
+          
           {session.data && <div className="mt-8">
               <p className="text-3xl font-normal mr-2">Visit our Courses</p>
               <div className="mt-4 mb-4 flex">
