@@ -2,13 +2,11 @@ import { Button } from "ui";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router.js";
 import { getAllCourses} from "../../../backend/client/client"
-import {signIn, useSession, signOut} from "next-auth/react"
+import { signIn, useSession, signOut } from "next-auth/react"
 import { Course } from "store";
-
 
 function Courses() {
     const session = useSession();
-    
     const [courses, setCourses] = useState<Course[]>([]);
     
     const init = async () => {
@@ -16,9 +14,9 @@ function Courses() {
         setCourses(response);
     }
 
-    // useEffect(() => {
-    //     init();
-    // }, []);
+    useEffect(() => {
+        init();
+    }, []);
 
     if (courses.length === 0 ) {
         return <div className="text-center text-4xl mt-40">
