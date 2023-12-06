@@ -120,7 +120,6 @@ function UpdateCard({course, setCourse}: UpdateCardProps){
 }
 
 function CourseCard({course}:{course:any}){
-    
     return <div className="max-w-md">
         <h1 className="text-2xl mb-3 mt-6">Course Preview</h1>
         <div className="bg-white shadow-xl rounded-lg m-5">
