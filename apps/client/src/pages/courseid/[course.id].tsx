@@ -27,7 +27,7 @@ export default function updateCourse(){
     }, []);
 
     if (!course) {
-        return <div style={{height: "100vh", justifyContent: "center", flexDirection: "column"}}>
+        return <div className="text-center text-4xl mt-30">
             Loading....
         </div>
     }

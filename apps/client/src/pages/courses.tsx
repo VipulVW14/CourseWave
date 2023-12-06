@@ -10,15 +10,21 @@ function Courses() {
     const session = useSession();
     
     const [courses, setCourses] = useState<Course[]>([]);
-
+    
     const init = async () => {
         const response : any = await getAllCourses();
         setCourses(response);
     }
 
-    useEffect(() => {
-        init();
-    }, []);
+    // useEffect(() => {
+    //     init();
+    // }, []);
+
+    if (courses.length === 0 ) {
+        return <div className="text-center text-4xl mt-40">
+            Loading....
+        </div>
+    }
 
     return <div>
         <div className="flex flex-wrap justify-center w-full h-full bg-slate-100">
