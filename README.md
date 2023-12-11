@@ -4,7 +4,9 @@ CourseWave is a dynamic course-selling website developed with comprehensive cour
 
 ## Overview
 
-CourseWave provides a platform for managing and selling courses. It leverages technologies like Next.js, Tailwind CSS, GraphQL, and PostgreSQL through Hasura. The frontend is powered by Next.js and Tailwind CSS, while the backend utilizes GraphQL and PostgreSQL for efficient data handling. Authentication is implemented using NextAuth, and state management is achieved with Recoil.
+CourseWave provides a platform for managing and selling courses. The frontend leverages Next.js and Tailwind CSS, while the backend utilizes GraphQL and PostgreSQL through Hasura,managed with Docker Compose. Uses nextAuth for authentication, zod for input validation and Recoil for state management .
+The project is organized in a monorepo structure using Turborepo and is hosted on an AWS EC2 server, incorporating CI/CD for seamless updates and maintenance.
+
 
 ## Modules
 
