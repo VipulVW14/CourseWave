@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import { AllTypesProps, ReturnTypes, Ops } from './const';
-export const HOST = "https://graphqlcoursewave.vipulwasnik.tech/v1/graphql"
+export const HOST = "https://graphqlcoursewave.vipulx.tech/v1/graphql"
 
 
 export const HEADERS = {}

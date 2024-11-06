@@ -1,5 +1,5 @@
 import { Chain, ValueTypes } from "./zeus";
-const chain = Chain("https://graphqlcoursewave.vipulwasnik.tech/v1/graphql");
+const chain = Chain("https://graphqlcoursewave.vipulx.tech/v1/graphql");
 
 
 // Course clients
